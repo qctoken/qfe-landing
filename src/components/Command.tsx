@@ -147,7 +147,7 @@ export function Command() {
                 </div>
               ))}
               {COMMANDS.slice(2).map((info, index) => (
-                <div className="command__link" card-num={index + 3}>
+                <div key={index} className="command__link" card-num={index + 3}>
                   <div className="command__card">
                     <img src={info.img} className="command__avatar" />
                     <span className="command__position">{info.position}</span>
@@ -171,7 +171,11 @@ export function Command() {
       <div className="command__backPopUp">
         <div className="command__popUp">
           {COMMANDS.map((info, index) => (
-            <div className="command__popUpPersonBlock" card-num={index + 1}>
+            <div
+              key={index}
+              className="command__popUpPersonBlock"
+              card-num={index + 1}
+            >
               <div className="command__card">
                 <img
                   src={info.img}
