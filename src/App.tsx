@@ -20,10 +20,10 @@ type Props = {
   buyQCTLink?: string;
 };
 
-function App({ startLink }: Props) {
+function App({ startLink, buyQCTLink }: Props) {
   return (
     <div className="landing_root">
-      <Header startLink={startLink} />
+      <Header startLink={startLink} buyQCTLink={buyQCTLink} />
       <ScrollLine />
       <StepBlock />
       <RoadMap />
