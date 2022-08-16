@@ -1,0 +1,15 @@
+.roadmap{
+    margin: 60px auto 0;
+}
+
+.roadmap__head{
+    font-family: 'Rubik';
+    font-weight: 500;
+    line-height: 120%;
+    color: #2C2D2E;
+}
+
+.roadmap__scroll{
+    overflow-y: hidden;
+    overflow-x: scroll;
+}

@@ -1,23 +1,40 @@
-import { css } from "@emotion/react";
+import "./style/assembly.css";
 
-const styles = {
-  root: css({ color: "green" }),
-  info: css({ color: "#ccc" }),
-};
+import { Bali } from "./components/Bali";
+import { Command } from "./components/Command";
+import { DbBlock } from "./components/DbBlock";
+import { Header } from "./components/Header";
+import { Job } from "./components/Job";
+import { Partner } from "./components/Partner";
+import { RoadMap } from "./components/RoadMap";
+import { Round } from "./components/Round";
+import { ScrollLine } from "./components/ScrollLine";
+import { StepBlock } from "./components/StepBlock";
+import { Tech } from "./components/Tech";
+import { Values } from "./components/Values";
+import { VirtualWorld } from "./components/VirtualWorld";
+import { VrBlock } from "./components/VrBlock";
 
 function App() {
   return (
-    <>
-      <h1 css={styles.root}>Past all landing code here</h1>
-      <h2>
-        You can create any nested folders in the src, example: components,
-        icons, etc...
-      </h2>
-      <h3 css={styles.info}>
-        You don't need any prettier or eslint config. We will move code to other
-        repository, but you can use it for self responsibility
-      </h3>
-    </>
+    <div className="landing_root">
+      <Header />
+      <ScrollLine />
+      <StepBlock />
+      <RoadMap />
+      <DbBlock />
+      <div className="back_black">
+        <VrBlock />
+        <Values />
+        <Bali />
+        <VirtualWorld />
+        <Command />
+        <Tech />
+        <Job />
+        <Partner />
+        <Round />
+      </div>
+    </div>
   );
 }
 

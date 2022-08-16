@@ -1,0 +1,31 @@
+.bali__content{
+    width: 1200px;
+    margin: 40px auto 0;
+}
+
+.bali__head_mob{
+    display: none;
+}
+
+.bali__head{
+    font-size: 48px;
+    width: 474px;
+}
+
+.bali__img{
+    width: 936px;
+    top: 20px;
+    right: -250px;
+}
+
+.bali__text{
+    width: 380px;
+}
+
+.bali__forBlock{
+    margin-top: 40px;
+}
+
+.bali__nav{
+    margin-bottom: 40px;
+}

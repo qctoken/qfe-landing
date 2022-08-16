@@ -1,0 +1,23 @@
+.landing_root {
+    background-color: #E7E7E9;
+}
+
+.landing_root span {
+    letter-spacing: 0.003em;
+}
+
+.back_black{
+    margin-top: -55px;
+    background-color: #1A1A1A;
+    padding-top: 50px;
+}
+
+.landing_root::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+
+.landing_root::-webkit-scrollbar-thumb {
+    background-color: #23232321;
+    border-radius: 50px;
+}

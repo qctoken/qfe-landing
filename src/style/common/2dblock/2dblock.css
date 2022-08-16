@@ -1,0 +1,70 @@
+.dblock{
+    width: 100%;
+    margin-top: 60px;
+    position: relative;
+}
+
+.dblock__head{
+    font-family: 'Rubik';
+    font-weight: 700;
+    color: #2C2D2E;
+}
+
+.dblock__text{
+    display: block;
+    margin-bottom: 60px;
+    margin-top: 40px;
+    font-family: 'Rubik';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 130%;
+    color: #1A1A1A;
+    opacity: 0.6;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dblock__img{
+    bottom: 0;
+    width: 100%;
+}
+
+.dblock__img_light{
+    position: absolute;
+    display: none;
+}
+
+.dblock__img_lightOn{
+    display: block;
+    opacity: 0;
+    animation: fadeIn 1s linear forwards;
+    animation-delay: 1s;
+    z-index: 100;
+}
+
+.dblock__img_lightOn+.dblock__img{
+    position: relative;
+    animation: fadeOut 1s linear forwards;
+    animation-delay: 1s;
+    z-index: 10;
+}
+
+@keyframes fadeIn {
+    0%{
+        bottom: 0;
+        opacity: 0;
+    }
+    100%{
+        bottom: 50px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0%{
+        bottom: 0;
+    }
+    100%{
+        bottom: 50px;
+    }
+}

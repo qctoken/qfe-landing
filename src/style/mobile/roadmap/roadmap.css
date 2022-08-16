@@ -1,0 +1,15 @@
+.roadmap{
+    width: 343px;
+    height: 590px;
+}
+
+.roadmap__head{
+    font-size: 36px;
+    display: block;
+    width: 260px;
+    word-break: break-word;
+}
+
+.roadmap__scroll{
+    margin-top: 20px;
+}

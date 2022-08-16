@@ -1,0 +1,120 @@
+.bali{
+    padding-top: 20px;
+    padding-bottom: 40px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.bali__content{
+    position: relative;
+}
+
+.bali__head{
+    font-family: 'Rubik';
+    font-weight: 500;
+    line-height: 130%;
+    color: #fff;
+    display: block;
+}
+
+.bali__head_blue{
+    color: #478BFD;
+}
+
+.bali__text{
+    margin-top: 40px;
+    font-family: 'TT Norms';    
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #FFFFFF;
+    opacity: 0.6;
+    display: block;
+}
+
+.bali__plan{
+    display: block;
+    margin-top: 20px;
+    font-family: 'TT Norms';    
+    font-weight: 500;
+    font-size: 18px;
+    color: #478BFD;
+}
+
+.bali__plan svg{
+    margin-left: 8.8px;
+    margin-bottom: -2.5px;
+    fill: #478BFD;
+}
+
+.bali__img{
+    position: absolute;
+}
+
+.bali__forBlock{
+    overflow: hidden;
+    width: 1400px;
+}
+
+.bali__arrow{
+    display: inline-block;
+    width: 6.22px;
+    height: 10.37px;
+    border: 1px solid #FFFFFF;
+    border-radius: 7px;
+    opacity: 0.6;
+    margin-right: 11px;
+    padding-top: 11px;
+    padding-bottom: 10.63px;
+    padding-left: 22px;
+    padding-right: 21.78px;
+    cursor: pointer;
+}
+
+.bali__cardBlock{
+    display: inline-flex;
+}
+
+.bali__card{
+    padding: 16px 25px;
+    width: 277px;
+    height: 164px;
+    background: #282828;
+    border-radius: 32px;
+    opacity: 0.2;
+    display: inline-block;
+    margin-right: 20px;
+    position: relative;
+}
+
+.bali__card_active{
+    opacity: 1;
+}
+
+.bali__card_hidden{
+    display: none;
+}
+
+.bali__cardName{
+    font-family: 'Rubik';
+    font-weight: 500;
+    font-size: 24px;
+    color: #FFFFFF;
+    display: block;
+    width: 197px;
+    float: left;
+    margin-top: 13.5px;
+}
+
+.bali__cardText{
+    font-family: 'TT Norms';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #FFFFFF;
+    opacity: 0.6;
+    display: block;
+    position: absolute;
+    top: 92px;
+    width: 277px;
+}

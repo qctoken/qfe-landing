@@ -1,0 +1,76 @@
+.header__background{
+    position: absolute;
+    width: 100%;
+}
+
+.header{
+    position: relative;
+    margin: 0 auto;
+}
+
+.top__line{
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.header__logo{
+    width: 108px;
+}
+
+.menu__item.active{
+    color: #005FFF;
+}
+
+.menu__item:hover{
+    color: #005FFF;
+}
+
+.header__h1{
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 120%;
+    color: #2C2D2E;
+    width: 511px;
+    display: block;
+}
+
+.header__text{
+    display: block;
+    color: #2c2d2e8a;
+    margin-top: 40px;
+}
+
+.header__h1_blue{
+    color: #005FFF;
+}
+
+.header__h1__mob{
+    display: none;
+}
+
+.header__butBlock{
+    margin-top: 40px;
+    width: 368px;
+}
+
+.header__button{
+    padding: 12px 25px;
+    background: #005FFF;
+    border-radius: 40px;
+    color: #FFFFFF;
+}
+
+.header__button_text{
+    margin-left: 20px;
+}
+
+.header__button_text, .header__button, .header__text{
+    font-family: 'TT Norms';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 130%;
+}
