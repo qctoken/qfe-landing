@@ -1,7 +1,13 @@
+import { Link } from "react-router-dom";
 import logo from "../images/logo.svg";
 import header_arrow_menu from "../images/header_arrow_menu.svg";
 
-export function Header() {
+type Props = {
+  startLink?: string;
+  buyQCTLink?: string;
+};
+
+export function Header({ startLink = "", buyQCTLink = "" }: Props) {
   return (
     <>
       <div className="header__background"></div>
@@ -99,7 +105,9 @@ export function Header() {
               </li>
             </ul>
           </ul>
-          <a className="menu__topButton">Купить QCT</a>
+          <Link to={buyQCTLink} className="menu__topButton">
+            Купить QCT
+          </Link>
           <a className="menu__button">
             <div className="menu__line"></div>
             <div className="menu__line"></div>
@@ -122,7 +130,9 @@ export function Header() {
           работы в любых валютах из любой точки Земли
         </span>
         <div className="header__butBlock">
-          <a className="header__button">Начать пользоваться</a>
+          <Link to={startLink} className="header__button">
+            Начать пользоваться
+          </Link>
           <span className="header__button_text">Стать инвестором</span>
         </div>
       </header>

@@ -15,10 +15,15 @@ import { Values } from "./components/Values";
 import { VirtualWorld } from "./components/VirtualWorld";
 import { VrBlock } from "./components/VrBlock";
 
-function App() {
+type Props = {
+  startLink?: string;
+  buyQCTLink?: string;
+};
+
+function App({ startLink }: Props) {
   return (
     <div className="landing_root">
-      <Header />
+      <Header startLink={startLink} />
       <ScrollLine />
       <StepBlock />
       <RoadMap />
