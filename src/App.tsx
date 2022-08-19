@@ -30,7 +30,7 @@ function App({ startLink, buyQCTLink }: Props) {
       <DbBlock />
       <div className="back_black">
         <VrBlock />
-        <div class="second-part-blocks">
+        <div className="second-part-blocks">
           <Values />
           <Bali />
           <VirtualWorld />
@@ -39,7 +39,7 @@ function App({ startLink, buyQCTLink }: Props) {
           <Job />
           <Partner />
           <Round />
-         </div>
+        </div>
       </div>
     </div>
   );
