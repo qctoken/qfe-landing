@@ -30,14 +30,16 @@ function App({ startLink, buyQCTLink }: Props) {
       <DbBlock />
       <div className="back_black">
         <VrBlock />
-        <Values />
-        <Bali />
-        <VirtualWorld />
-        <Command />
-        <Tech />
-        <Job />
-        <Partner />
-        <Round />
+        <div class="second-part-blocks">
+          <Values />
+          <Bali />
+          <VirtualWorld />
+          <Command />
+          <Tech />
+          <Job />
+          <Partner />
+          <Round />
+         </div>
       </div>
     </div>
   );
