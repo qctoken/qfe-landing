@@ -1,10 +1,28 @@
+import { useEffect } from "react";
 import baliBack from "../images/bali_back.png";
 import bali1 from "../images/bali_1.svg";
 import bali2 from "../images/bali_2.svg";
 import bali3 from "../images/bali_3.svg";
 import bali4 from "../images/bali_4.svg";
+import {
+  handleClickBaliArrowRight,
+  handleClickBaliArrowLeft,
+} from "../utils/bali";
 
 export function Bali() {
+  useEffect(() => {
+    const bali_arrow_left = document.querySelector(".bali__arrow_left");
+    const bali_arrow_right = document.querySelector(".bali__arrow_right");
+
+    bali_arrow_right!.addEventListener("click", handleClickBaliArrowRight);
+    bali_arrow_left!.addEventListener("click", handleClickBaliArrowLeft);
+
+    return () => {
+      bali_arrow_right!.removeEventListener("click", handleClickBaliArrowRight);
+      bali_arrow_left!.removeEventListener("click", handleClickBaliArrowLeft);
+    };
+  });
+
   return (
     <div id="bali" className="bali">
       <div className="bali__content">

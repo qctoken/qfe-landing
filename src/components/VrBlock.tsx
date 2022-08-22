@@ -1,6 +1,26 @@
+import { useRef, useEffect, useState } from "react";
 import vr_gl from "../images/vr_gl.png";
 
 export function VrBlock() {
+  const animationRef = useRef(null);
+  const [isEnter, setIsEnter] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setIsEnter(entry.isIntersecting);
+        }
+      });
+    });
+
+    observer.observe(animationRef.current!);
+
+    return () => {
+      observer.disconnect;
+    };
+  }, []);
+
   return (
     <div id="vrblock" className="vrblock">
       <h2 className="vrblock__head">
@@ -18,8 +38,8 @@ export function VrBlock() {
       </span>
       <div className="vrblock__hrLine"></div>
       <div className="vrblock__backLight"></div>
-      <div className="animation">
-        <div className="animation__top">
+      <div className="animation" ref={animationRef}>
+        <div className={`animation__top ${isEnter ? "animation_on" : ""}`}>
           <span className="vrblock__description">
             Предоставим обородувание - При покупке вашего продукта ваши ученики
             получают VR очки в подарок и в один клик погружаются в
@@ -30,7 +50,7 @@ export function VrBlock() {
           </h3>
           <h1 className="vrblock__vrName">VR ОЧКАХ</h1>
         </div>
-        <div className="animation__bottom">
+        <div className={`animation__bottom ${isEnter ? "animation_on" : ""}`}>
           <div className="vrblock__imgBlock">
             <img src={vr_gl} className="vrblock__img" />
           </div>

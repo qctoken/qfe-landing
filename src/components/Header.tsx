@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../images/logo.svg";
 import header_arrow_menu from "../images/header_arrow_menu.svg";
@@ -8,10 +9,21 @@ type Props = {
 };
 
 export function Header({ startLink = "", buyQCTLink = "" }: Props) {
+  const [isHide, setIsHide] = useState(false);
+  const [isMenuButtonClose, setIsMenuButtonClose] = useState(false);
+
+  const handleClickArrow = () => {
+    setIsHide((prev) => !prev);
+  };
+
+  const handleClickMenuButton = () => {
+    setIsMenuButtonClose((prev) => !prev);
+  };
+
   return (
     <>
       <div className="header__background"></div>
-      <ul className="menu menu_mob">
+      <ul className={`menu menu_mob ${isMenuButtonClose ? "menu_showed" : ""}`}>
         <a className="menu__link active" href="#">
           <li className="menu__item">Главная</li>
         </a>
@@ -82,12 +94,12 @@ export function Header({ startLink = "", buyQCTLink = "" }: Props) {
                 Команда
               </a>
             </li>
-            <li className="menu__arrow">
+            <li className="menu__arrow" onClick={handleClickArrow}>
               <a className="menu__link" href="#">
                 <img src={header_arrow_menu} />
               </a>
             </li>
-            <ul className="menu__hide">
+            <ul className={`menu__hide ${isHide ? "" : "menu__hide_visible"}`}>
               <li className="menu__item">
                 <a className="menu__link" href="#partner">
                   Партнерство
@@ -108,7 +120,12 @@ export function Header({ startLink = "", buyQCTLink = "" }: Props) {
           <Link to={buyQCTLink} className="menu__topButton">
             Купить QCT
           </Link>
-          <a className="menu__button">
+          <a
+            onClick={handleClickMenuButton}
+            className={`menu__button ${
+              isMenuButtonClose ? "menu__button_close" : ""
+            }`}
+          >
             <div className="menu__line"></div>
             <div className="menu__line"></div>
             <div className="menu__line"></div>

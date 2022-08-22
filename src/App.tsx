@@ -1,14 +1,11 @@
 import "./style/reset.css";
 import "./style/fonts.css";
 import "./style/assembly.css";
-import "./script/animations.js";
-import "./script/script_menu.js";
-import "./script/script_steps.js";
-import "./script/script_bali.js";
-import "./script/script_command.js";
-import "./script/script_jobPopUp.js";
-import "./script/script_partnerPopUp.js";
+// import "./script/script_command.js";
+// import "./script/script_jobPopUp.js";
+// import "./script/script_partnerPopUp.js";
 
+import { useRef } from "react";
 import { Bali } from "./components/Bali";
 import { Command } from "./components/Command";
 import { DbBlock } from "./components/DbBlock";
@@ -30,6 +27,8 @@ type Props = {
 };
 
 function App({ startLink, buyQCTLink }: Props) {
+  const secondPartRef = useRef<HTMLDivElement>(null);
+
   return (
     <div className="landing_root">
       <Header startLink={startLink} buyQCTLink={buyQCTLink} />
@@ -39,8 +38,8 @@ function App({ startLink, buyQCTLink }: Props) {
       <DbBlock />
       <div className="back_black">
         <VrBlock />
-        <div className="second-part-blocks">
-          <Values />
+        <div className="second-part-blocks" ref={secondPartRef}>
+          <Values secondPartRef={secondPartRef} />
           <Bali />
           <VirtualWorld />
           <Command />
