@@ -12,6 +12,10 @@ import avatar_11 from "../images/avatar_11.png";
 import avatar_12 from "../images/avatar_12.png";
 import avatar_14 from "../images/avatar_14.png";
 import avatar_15 from "../images/avatar_15.png";
+import avatar_16 from "../images/avatar_16.png";
+import avatar_17 from "../images/avatar_17.png";
+import avatar_18 from "../images/avatar_18.png";
+import avatar_19 from "../images/avatar_19.png";
 
 const COMMANDS = [
   {
@@ -104,6 +108,34 @@ const COMMANDS = [
     img: avatar_15,
     description:
       'Мастер языка смыслов в текстах. Пишет как дышит. Глаголом жжет и сердца, и умы людей. Тонко чувствует разницу между "жечь", "зажигать" и "выжигать". Выжиганию нет, огню идей - да.',
+  },
+  {
+    name: "Вячеслав Кончаковский",
+    position: "Хозяин процессов",
+    img: avatar_16,
+    description:
+      'Держит ниточки всех невидимых процессов в своих руках, видит картину целиком и не допускает лобового столкновения задач.',
+  },
+  {
+    name: "Светлана Губскова",
+    position: "Financier",
+    img: avatar_17,
+    description:
+      'Разрабатывает тактику  и стратегию распределения средств, анализирует эффективность затрат, планирует результаты, распределяет потоки, контролирует прибыль и активы.',
+  },
+  {
+    name: "Светлана Бабина",
+    position: "Бизнес  ассистент",
+    img: avatar_18,
+    description:
+      'Оптимизирует время фаундера. Организовывает тренинги, договаривается о встречах, налаживает коммуникацию с партнерами.',
+  },
+  {
+    name: "Дархан Калматай",
+    position: "Videomaker",
+    img: avatar_19,
+    description:
+      'Казахский парень, который предпочитает понты. Снимает видео для души и с душой. Если посмотреть в глаза, то можете увидеть прекрасное.',
   },
 ];
 
