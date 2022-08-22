@@ -1,4 +1,13 @@
+import "./style/reset.css";
+import "./style/fonts.css";
 import "./style/assembly.css";
+import "./script/animations.js";
+import "./script/script_menu.js";
+import "./script/script_steps.js";
+import "./script/script_bali.js";
+import "./script/script_command.js";
+import "./script/script_jobPopUp.js";
+import "./script/script_partnerPopUp.js";
 
 import { Bali } from "./components/Bali";
 import { Command } from "./components/Command";

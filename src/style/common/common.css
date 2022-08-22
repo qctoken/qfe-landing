@@ -13,12 +13,12 @@
     padding-top: 50px;
 }
 
-.landing_root::-webkit-scrollbar {
+.landing_root *::-webkit-scrollbar {
     width: 0px;
     height: 0px;
 }
 
-.landing_root::-webkit-scrollbar-thumb {
+.landing_root *::-webkit-scrollbar-thumb {
     background-color: #23232321;
     border-radius: 50px;
 }
