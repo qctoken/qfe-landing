@@ -17,6 +17,10 @@
     height: 817px;
 }
 
+.tech__consoleBlockText{
+    left: 58px;
+}
+
 .tech__lineNumb_mob{
     display: block;
 }
@@ -26,8 +30,10 @@
 }
 
 .tech__consoleText_margin{
-    line-height: 28px;
-    width: 229px;
+    line-height: 34px;
+    width: 246px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .tech__lineNumb{

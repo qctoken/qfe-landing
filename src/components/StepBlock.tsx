@@ -49,7 +49,8 @@ export function StepBlock() {
             Встроенная платежная система
           </a>
           <a step-num="10" className="step-block__option">
-            Сертификат NFT
+            <span className="step-block__option_mob">Сертификат NFT и L2E</span>
+            <span className="step-block__option_desk">Сертификат NFT и технология Learn To Earn</span>
           </a>
           <a step-num="11" className="step-block__option">
             Social
@@ -78,12 +79,7 @@ export function StepBlock() {
               <br />
               Мы позаботились о вас.
             </span>
-            <span className="step-block__text step-block__text_mob">
-              Интуитивно понятное создание чат-ботов для высоко конверсионной
-              доходимости до вашего продукта в: Telegram, Вконтакте, WhatsApp,
-              Instagram, Viber. Бот общается с вашими клиентами за вас и
-              отвечает на все вопросы, вам же остается принимать оплаты.
-            </span>
+            
           </div>
           <img src={step_1} className="step-block__img" />
         </div>
@@ -103,12 +99,7 @@ export function StepBlock() {
               реальном времени за счет автоматических подсказок искусственного
               интеллекта.
             </span>
-            <span className="step-block__text step-block__text_mob">
-              Интуитивно понятное создание чат-ботов для высоко конверсионной
-              доходимости до вашего продукта в: Telegram, Вконтакте, WhatsApp,
-              Instagram, Viber. Бот общается с вашими клиентами за вас и
-              отвечает на все вопросы, вам же остается принимать оплаты.
-            </span>
+            
           </div>
           <img src={step_2} className="step-block__img" />
         </div>
@@ -126,12 +117,7 @@ export function StepBlock() {
               Создавайте и загружайте свои шаблоны, которые по партнерской
               программе будут вам ежедневно приносить дополнительный доход.
             </span>
-            <span className="step-block__text step-block__text_mob">
-              Интуитивно понятное создание чат-ботов для высоко конверсионной
-              доходимости до вашего продукта в: Telegram, Вконтакте, WhatsApp,
-              Instagram, Viber. Бот общается с вашими клиентами за вас и
-              отвечает на все вопросы, вам же остается принимать оплаты.
-            </span>
+            
           </div>
           <img src={step_3} className="step-block__img" />
         </div>
@@ -146,12 +132,7 @@ export function StepBlock() {
               педагогического образования” до “Я имею лучший курс в своей жизни,
               который способен конкурировать даже с топовыми игроками рынка”.
             </span>
-            <span className="step-block__text step-block__text_mob">
-              Интуитивно понятное создание чат-ботов для высоко конверсионной
-              доходимости до вашего продукта в: Telegram, Вконтакте, WhatsApp,
-              Instagram, Viber. Бот общается с вашими клиентами за вас и
-              отвечает на все вопросы, вам же остается принимать оплаты.
-            </span>
+            
           </div>
           <img src={step_4} className="step-block__img" />
         </div>
@@ -167,12 +148,7 @@ export function StepBlock() {
               писем, сообщений, речевых модулей, которые помогут вашему клиенту
               приобрести дорогой продукт с большим чеком.
             </span>
-            <span className="step-block__text step-block__text_mob">
-              Интуитивно понятное создание чат-ботов для высоко конверсионной
-              доходимости до вашего продукта в: Telegram, Вконтакте, WhatsApp,
-              Instagram, Viber. Бот общается с вашими клиентами за вас и
-              отвечает на все вопросы, вам же остается принимать оплаты.
-            </span>
+            
           </div>
           <img src={step_5} className="step-block__img" />
         </div>
@@ -193,12 +169,7 @@ export function StepBlock() {
               увеличивается, что позволит вам продать вашу линейку продуктов на
               больший чек.
             </span>
-            <span className="step-block__text step-block__text_mob">
-              Интуитивно понятное создание чат-ботов для высоко конверсионной
-              доходимости до вашего продукта в: Telegram, Вконтакте, WhatsApp,
-              Instagram, Viber. Бот общается с вашими клиентами за вас и
-              отвечает на все вопросы, вам же остается принимать оплаты.
-            </span>
+            
           </div>
           <img src={step_6} className="step-block__img" />
         </div>
@@ -219,12 +190,7 @@ export function StepBlock() {
               или на мобильный телефон через встроенную IP телефонию в любой
               уголок мира.
             </span>
-            <span className="step-block__text step-block__text_mob">
-              Интуитивно понятное создание чат-ботов для высоко конверсионной
-              доходимости до вашего продукта в: Telegram, Вконтакте, WhatsApp,
-              Instagram, Viber. Бот общается с вашими клиентами за вас и
-              отвечает на все вопросы, вам же остается принимать оплаты.
-            </span>
+            
           </div>
           <img src={step_7} className="step-block__img" />
         </div>
@@ -244,12 +210,7 @@ export function StepBlock() {
             <span className="step-block__text">
               Все это с нашими алгоритмами сбора статистики и аналитики.
             </span>
-            <span className="step-block__text step-block__text_mob">
-              Интуитивно понятное создание чат-ботов для высоко конверсионной
-              доходимости до вашего продукта в: Telegram, Вконтакте, WhatsApp,
-              Instagram, Viber. Бот общается с вашими клиентами за вас и
-              отвечает на все вопросы, вам же остается принимать оплаты.
-            </span>
+            
           </div>
           <img src={step_8} className="step-block__img" />
         </div>
@@ -264,12 +225,7 @@ export function StepBlock() {
             <span className="step-block__text">
               Поддержка карт Европы, Америки, СНГ, Азии и РФ.
             </span>
-            <span className="step-block__text step-block__text_mob">
-              Интуитивно понятное создание чат-ботов для высоко конверсионной
-              доходимости до вашего продукта в: Telegram, Вконтакте, WhatsApp,
-              Instagram, Viber. Бот общается с вашими клиентами за вас и
-              отвечает на все вопросы, вам же остается принимать оплаты.
-            </span>
+            
           </div>
           <img src={step_9} className="step-block__img" />
         </div>
@@ -291,12 +247,7 @@ export function StepBlock() {
             <span className="step-block__text">
               Сертификат NFT определяет уровень вашего ученика - специалиста.
             </span>
-            <span className="step-block__text step-block__text_mob">
-              Интуитивно понятное создание чат-ботов для высоко конверсионной
-              доходимости до вашего продукта в: Telegram, Вконтакте, WhatsApp,
-              Instagram, Viber. Бот общается с вашими клиентами за вас и
-              отвечает на все вопросы, вам же остается принимать оплаты.
-            </span>
+            
           </div>
           <img src={step_10} className="step-block__img" />
         </div>
@@ -317,12 +268,7 @@ export function StepBlock() {
               Также вы можете создавать свое собственное комьюнити переходящее в
               метавселенную.
             </span>
-            <span className="step-block__text step-block__text_mob">
-              Интуитивно понятное создание чат-ботов для высоко конверсионной
-              доходимости до вашего продукта в: Telegram, Вконтакте, WhatsApp,
-              Instagram, Viber. Бот общается с вашими клиентами за вас и
-              отвечает на все вопросы, вам же остается принимать оплаты.
-            </span>
+            
           </div>
           <img src={step_11} className="step-block__img" />
         </div>
@@ -339,12 +285,7 @@ export function StepBlock() {
               успешно выполненных заказов, тем самым являясь гарантом их
               качества.
             </span>
-            <span className="step-block__text step-block__text_mob">
-              Интуитивно понятное создание чат-ботов для высоко конверсионной
-              доходимости до вашего продукта в: Telegram, Вконтакте, WhatsApp,
-              Instagram, Viber. Бот общается с вашими клиентами за вас и
-              отвечает на все вопросы, вам же остается принимать оплаты.
-            </span>
+            
           </div>
           <img src={step_12} className="step-block__img" />
         </div>
