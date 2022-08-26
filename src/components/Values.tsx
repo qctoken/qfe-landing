@@ -43,7 +43,7 @@ export function Values({ secondPartRef }: Props) {
     observer.observe(valuesRef.current!);
 
     return () => {
-      observer.disconnect;
+      observer.disconnect();
     };
   }, []);
 
