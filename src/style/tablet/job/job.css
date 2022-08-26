@@ -1,3 +1,14 @@
+.job_animated{
+    animation: job_animation 1.5s linear;
+    animation-delay: 3s;
+}
+
+@keyframes job_animation {
+    0%{
+        overflow: hidden;
+    }
+}
+
 .job__content{
     width: 864px;
 }
@@ -6,6 +17,12 @@
     margin-top: 20px;
     font-size: 48px;
     width: 274px;
+    opacity: 0;
+}
+
+.job_animated .job__head{
+    animation: text-appear 1s linear forwards;
+    animation-delay: 3s;
 }
 
 .job__textBlue{
@@ -16,25 +33,74 @@
     width: 267px;
     height: 480px;
     margin-top: 40px;
+    opacity: 0;
+}
+
+.job_animated .job__text{
+    animation: text-appear 1s linear forwards;
+    animation-delay: 3s;
+}
+
+
+@keyframes text-appear {
+    0%{
+        opacity: 0;
+        margin-left: -300px;
+    }
+    100%{
+        opacity: 1;
+        margin-left: 0;
+    }
 }
 
 .job__img_logo{
     top: 10px;
     left: 269px;
+    opacity: 0;
 }
 
 .job__img_people{
     top: -15px;
     left: 243px;
+    opacity: 0;
+}
+
+.job_animated .job__img_logo{
+    animation: img-logo-appear 1s linear forwards;
+}
+
+.job_animated .job__img_people{
+    animation: img-people-appear 1s linear forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes img-logo-appear {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes img-people-appear {
+    0%{
+        opacity: 0;
+        margin-top: 200px;
+    }
+    100%{
+        opacity: 1;
+        margin-top: 0px;
+    }
 }
 
 .job__light{
-    width: 400px;
-    height: 400px;
     filter: blur(100px);
-    top: 40px;
-    left: 312px;
+}
+
+.job_animated .job__light{
     animation: blured_light 1.5s infinite;
+    animation-delay: 2s;
     animation-direction: alternate;
 }
 
@@ -56,9 +122,28 @@
 
 .job__form{
     width: 330px;
-    position: absolute;
     top: 20px;
     right: 0;
+    display: none;
+    position: absolute;
+}
+
+.job_animated .job__form{
+    animation: form-appear 1s linear forwards;
+    animation-delay: 3s;
+    display: block;
+    opacity: 0;
+}
+
+@keyframes form-appear {
+    0%{
+        opacity: 0;
+        margin-right: -300px;
+    }
+    100%{
+        opacity: 1;
+        margin-right: 0;
+    }
 }
 
 .job__scrollBlock{

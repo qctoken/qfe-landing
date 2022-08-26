@@ -2,6 +2,7 @@
     background-image: url('../../../images/colosseum.png');
     background-repeat: no-repeat;
     background-position: top center;
+    overflow: hidden;
 }
 
 .partner__content{
@@ -54,6 +55,10 @@
     position: absolute;
     z-index: 100;
     width: 320px;
+}
+
+.partner__pocket:hover{
+    transform: scale(1.1);
 }
 
 .partner__pocket_black{

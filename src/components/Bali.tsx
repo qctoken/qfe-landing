@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import baliBack from "../images/bali_back.png";
 import bali1 from "../images/bali_1.svg";
 import bali2 from "../images/bali_2.svg";
@@ -10,6 +10,9 @@ import {
 } from "../utils/bali";
 
 export function Bali() {
+  const baliBlockRef = useRef<HTMLDivElement>(null);
+  const [isBaliAnimated, setIsBaliAnimated] = useState(false);
+
   useEffect(() => {
     const bali_arrow_left = document.querySelector(".bali__arrow_left");
     const bali_arrow_right = document.querySelector(".bali__arrow_right");
@@ -23,8 +26,28 @@ export function Bali() {
     };
   });
 
+  useEffect(() => {
+    let is_showed = false;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !is_showed) {
+          setIsBaliAnimated(true);
+
+          is_showed = true;
+          observer.disconnect();
+        }
+      });
+    });
+
+    observer.observe(baliBlockRef.current!);
+
+    return () => {
+      observer.disconnect;
+    };
+  }, []);
+
   return (
-    <div id="bali" className="bali">
+    <div id="bali" className="bali" ref={baliBlockRef}>
       <div className="bali__content">
         <h2 className="bali__head">
           Комьюнити на Бали и в <i className="bali__head_blue">метавселенной</i>
@@ -56,7 +79,7 @@ export function Bali() {
             <path d="M6.7398 2.05999L11.7798 7.09999H0.799805V8.89999H11.7798L6.7398 13.94L7.9998 15.2L15.1998 7.99999L7.9998 0.799988L6.7398 2.05999Z" />
           </svg>
         </a>
-        <img src={baliBack} className="bali__img" />
+        <img src={baliBack} className={`bali__img ${isBaliAnimated ? "bali__img_animated" : ""}`} />
         <div className="bali__forBlock">
           <div className="bali__nav">
             <a className="bali__arrow bali__arrow_left">

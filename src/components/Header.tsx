@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState} from "react";
 import { Link } from "react-router-dom";
+
 import logo from "../images/logo.svg";
 import header_arrow_menu from "../images/header_arrow_menu.svg";
 
@@ -20,6 +21,53 @@ export function Header({ startLink = "", buyQCTLink = "" }: Props) {
     setIsMenuButtonClose((prev) => !prev);
   };
 
+
+  useEffect(() => {
+    let prev_scroll_pos = window.pageYOffset;
+    const menu_top = document.querySelector('.header__top-line');
+    const menu__hide = document.querySelector('.menu__hide');
+    window.onscroll = function() {
+      const current_scroll_pos = window.pageYOffset;
+        if (prev_scroll_pos > current_scroll_pos) {
+            menu_top!.classList.add('header__top-line_visible');
+            menu_top!.classList.remove('header__top-line_hidden');
+        } else {
+            menu_top!.classList.remove('header__top-line_visible');
+            menu_top!.classList.add('header__top-line_hidden');
+            menu__hide!.classList.remove('menu__hide_visible');
+        }
+        prev_scroll_pos = current_scroll_pos;
+    }
+
+    const land_html = document.querySelector("html");
+    land_html!.style.scrollBehavior = "smooth";
+  });
+
+  useEffect(() => {
+    const menu_links = document.querySelectorAll('.menu__item');
+
+    menu_links!.forEach(item => {
+      item.addEventListener('click', () => {
+        dellActiveMenuLink();
+        item.classList.add('active');
+      });
+    });
+
+    const header__logo = document.querySelector('.header__logo');
+    header__logo!.addEventListener('click', () => {
+      dellActiveMenuLink();
+      document.querySelector('.menu__item_main')!.classList.add('active');
+    });
+
+    function dellActiveMenuLink(){
+      const active_item = document.querySelectorAll('.menu .active');    
+      active_item!.forEach(item => { item.classList.remove('active');});
+    }
+  });
+
+  return (
+    <>
+      <div className="header__background"></div>
   return (
     <>
       <div className="header__background"></div>
@@ -57,9 +105,9 @@ export function Header({ startLink = "", buyQCTLink = "" }: Props) {
       </ul>
       <header className="header">
         <div className="header__top-line">
-          <img src={logo} className="header__logo" />
-          <ul className="menu">
-            <li className="menu__item active">
+          <a href="#"><img src={logo} className="header__logo" /></a>
+          <ul className={`menu ${isMenuButtonClose ? "menu_showed" : ""}`}>
+            <li className="menu__item menu__item_main active">
               <a className="menu__link" href="#">
                 Главная
               </a>
@@ -147,7 +195,7 @@ export function Header({ startLink = "", buyQCTLink = "" }: Props) {
           работы в любых валютах из любой точки Земли
         </span>
         <div className="header__butBlock">
-          <Link to={startLink} className="header__button">
+          <Link to={startLink} className="menu__topButton">
             Начать пользоваться
           </Link>
           <span className="header__button_text">Стать инвестором</span>

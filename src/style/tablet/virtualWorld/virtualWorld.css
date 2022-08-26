@@ -10,16 +10,52 @@
 .virtualWorld__head{
     font-size: 48px;
     width: 585px;
+    opacity: 0;
+}
+
+.virtualWorld__content_animated .virtualWorld__head{
+    animation: vWtext_appear 1s linear forwards;
 }
 
 .virtualWorld__text{
     width: 483px;
+    opacity: 0;
+}
+
+.virtualWorld__content_animated .virtualWorld__text{
+    animation: vWtext_appear 1s linear forwards;
+}
+
+@keyframes vWtext_appear {
+    0%{
+        opacity: 0;
+        margin-left: -300px;
+    }
+    100%{
+        opacity: 1;
+        margin-left: 0;
+    }
 }
 
 .virtualWorld__img{
     position: absolute;
     width: 605px;
-    top: 650px;
-    right: -200px;
+    top: 800px;
+    right: -350px;
     z-index: 10;
+}
+
+.virtualWorld__content_animated .virtualWorld__img{
+    animation: vWimg_appear 2s linear forwards;
+}
+
+@keyframes vWimg_appear {
+    0%{
+        top: 800px;
+        right: -350px;
+    }
+    100%{
+        top: 650px;
+        right: -200px;
+    }
 }

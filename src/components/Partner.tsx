@@ -1,12 +1,93 @@
+import { useRef, useEffect, useState } from "react";
 import colosseum_logo from "../images/colosseum_logo.svg";
 import colosseum_token from "../images/colosseum_token.png";
 import virualW from "../images/virualW.png";
 import colesseum_sum from "../images/colesseum_sum.png";
 
+import {
+  handleClickPartnerArrowRight,
+  handleClickPartnerArrowLeft,
+  refresh_num,
+  refresh_color,
+} from "../utils/partner";
+
 export function Partner() {
+  const VWBlockRef = useRef<HTMLDivElement>(null);
+  const [isVWAnimated, setIsVWAnimated] = useState(false);
+
+  const [isPopUpVisible, setIsPopUpVisible] = useState(false);
+
+  function handleClickPopUp(event: any){
+    let pocket_num;
+
+    if(event.currentTarget?.classList.contains('partner__pocket')){
+      pocket_num = event.currentTarget.getAttribute('pocket-num');
+      document.querySelector('.partner__pocketAbout[pocket-num="'+pocket_num+'"]')!.classList.add("active");
+
+      refresh_num(pocket_num);
+      refresh_color(pocket_num);
+      setIsPopUpVisible((prev) => !prev);
+    }
+    else if(event.target?.classList.contains('partner__popUp')){
+      document.querySelector('.partner__pocketAbout.active')!.classList.remove("active");
+      setIsPopUpVisible((prev) => !prev);
+    }
+  };
+
+  useEffect(() => {
+    const partner__arrow_left = document.querySelector('.partner__arrow-left');
+    const partner__arrow_right = document.querySelector('.partner__arrow-right');
+
+    partner__arrow_right!.addEventListener("click", handleClickPartnerArrowRight);
+    partner__arrow_left!.addEventListener("click", handleClickPartnerArrowLeft);
+
+    return () => {
+      partner__arrow_right!.removeEventListener("click", handleClickPartnerArrowRight);
+      partner__arrow_left!.removeEventListener("click", handleClickPartnerArrowLeft);
+    };
+  });
+
+  useEffect(() => {
+    const partner__button = document.querySelector('.partner__button');
+
+    const form_appear = function(event: any){
+      const partner__formBlock = document.querySelector('.partner__formBlock');
+      partner__formBlock!.classList.add('active');
+
+      setTimeout(function(){partner__button!.setAttribute('type', 'submit');}, 200);
+    }
+
+    partner__button!.addEventListener('click', form_appear);
+
+    return () => {
+      partner__button!.removeEventListener('click', form_appear);
+    };
+  });
+
+  useEffect(() => {
+    let is_showed = false;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !is_showed) {
+          setIsVWAnimated(true);
+
+          is_showed = true;
+          observer.disconnect();
+        }
+      });
+    });
+
+    observer.observe(VWBlockRef.current!);
+
+    return () => {
+      observer.disconnect;
+    };
+  }, []);
   return (
     <div id="partner" className="partner">
-      <div id="partner__pocketBlockBack" className="partner__pocketBlockBack">
+      <div id="partner__pocketBlockBack" 
+        className={`partner__pocketBlockBack ${isPopUpVisible ? "partner__pocketBlockBack_visible" : ""}`}
+        onClick={handleClickPopUp}>
           <div className="partner__popUp" pocket-count="3">
               <div className="partner__pocketBlock" >
                   <div className="partner__pocketBlockContent">
@@ -111,7 +192,7 @@ export function Partner() {
         <span className="partner__text partner__text_left">SEED ROUND</span>
         <span className="partner__text partner__text_right">PRICE 0.70$</span>
         <img src={colosseum_token} className="partner__token" />
-        <div pocket-num="1" className="partner__pocket partner__pocket_white partner__pocket_right">
+        <div onClick={handleClickPopUp} pocket-num="1" className="partner__pocket partner__pocket_white partner__pocket_right">
           <span className="partner__pocketText">ПАКЕТ</span>
           <h4 className="partner__pocketName partner__pocketName_black">
             Сооснователь-Владелец
@@ -134,7 +215,7 @@ export function Partner() {
             цена 1 qct до 15.05.22 0,7$
           </span>
         </div>
-        <div pocket-num="2" className="partner__pocket partner__pocket_black partner__pocket_left">
+        <div onClick={handleClickPopUp} pocket-num="2" className="partner__pocket partner__pocket_black partner__pocket_left">
           <span className="partner__pocketText">ПАКЕТ</span>
           <h4 className="partner__pocketName partner__pocketName_blue">
             Владелец-Инвестор
@@ -159,7 +240,7 @@ export function Partner() {
             цена 1 qct до 15.05.22 0,7$
           </span>
         </div>
-        <div pocket-num="3" className="partner__pocket partner__pocket_black partner__pocket_center">
+        <div onClick={handleClickPopUp} pocket-num="3" className="partner__pocket partner__pocket_black partner__pocket_center">
           <span className="partner__pocketText">ПАКЕТ</span>
           <h4 className="partner__pocketName partner__pocketName_white">
             Инвестор-Владелец
@@ -184,7 +265,7 @@ export function Partner() {
             цена 1 qct до 15.05.22 0,7$
           </span>
         </div>
-        <div className="virtualWorld__content virtualWorld__content_desktop">
+        <div ref={VWBlockRef} className={`virtualWorld__content virtualWorld__content_desktop ${isVWAnimated ? "virtualWorld__content_animated" : ""}`}>
           <h2 className="virtualWorld__head">
             Проводите курсы
             <br />в виртуальном мире
@@ -199,7 +280,7 @@ export function Partner() {
           </span>
           <img src={virualW} className="virtualWorld__img" />
         </div>
-        <span className="partner__week">
+        <span id="partner__success" className="partner__week">
           <i className="partner__week_blue">За 2 недели</i>{" "}
           <i className="partner__week_desktop">мы</i> закрыли Seed Round
         </span>

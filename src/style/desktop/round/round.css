@@ -13,6 +13,14 @@
     padding: 42px 50px 40px;
 }
 
+.round__card:hover .round__sum{
+    display: none;
+}
+
+.round__card:hover .round__sum_hover{
+    display: block;
+}
+
 .round__sum{
     margin: 20px auto 0;
 }

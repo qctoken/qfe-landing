@@ -15,7 +15,21 @@
 .bali__img{
     width: 936px;
     top: 20px;
-    right: -250px;
+    display: none;
+}
+
+.bali__img.bali__img_animated{
+    display: block;
+    animation: smoth-slide 1s linear forwards;
+}
+
+@keyframes smoth-slide {
+    0%{
+        right: -1000px;
+    }
+    100%{
+        right: -250px;
+    }
 }
 
 .bali__text{

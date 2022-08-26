@@ -13,62 +13,83 @@
     margin: 0 auto;
 }
 
+.header__top-line{
+    height: 83px;
+}
+
+.header__logo{
+    margin-right: 211px;
+}
+
+.header__top-line.header__top-line_visible{
+    animation: soft_appear 0.5s linear;
+}
+
+.header__top-line.header__top-line_hidden{
+    animation: soft_disappear 0.5s linear forwards; 
+}
+
+@keyframes soft_appear {
+    0%{
+        margin-top: -83px;
+    }
+    100%{
+        margin-top: 0;
+    }
+}
+
+@keyframes soft_disappear {
+    0%{
+        margin-top: 0;
+    }
+    100%{
+        margin-top: -83px;
+    }
+}
+
 .menu{
     display: none;
  }
  
- .menu_showed{
-     display: block;
-     position: absolute;
-     width: 100%;
-     background-color: #E7E7E9;
-     top: 83px;
-     z-index: 100;
- }
- 
- .menu__item{
-     font-family: 'Rubik';
-     font-weight: 500;
-     font-size: 18px;
-     width: 343px;
-     padding: 16px 0;
-     display: block;
-     margin: 0 auto;
- }
- 
- .menu__link.active{
-     color: #fff;
-     background: #005FFF;
- }
- 
- .menu__link{
-     display: block;
-     width: 100%;
-}
-
-.menu__arrow:hover+.menu__hide{
-    display: flex;
-}
-
-.menu__hide{
+.menu_showed{
+    display: block;
     position: absolute;
-    width: 174px;
-    height: 123px;
-    display: none;
+    width: 100%;
     background-color: #E7E7E9;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    top: 40px;
-    right: 190px;
-    border-radius: 20px;
+    top: 82px;
+}
+
+.header__top-line_hidden .menu_showed{
+    display: none;
+}
+ 
+.menu__item{
+    font-family: 'Rubik';
+    font-weight: 500;
+    font-size: 18px;
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+ 
+.active.menu__item{
+    color: #fff;
+    background: #005FFF;
+}
+ 
+.menu__link{
+    display: inline-block;
+    text-align: left;
+    width: 343px;
+    padding: 16px 0;
+}
+
+.menu__arrow{
+    display: none;
 }
 
 .menu__button{
     display: block;
-    position: absolute;
-    right: 0;
-    top: 34px;
 }
 
 .menu__line{
