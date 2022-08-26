@@ -1,6 +1,10 @@
 import { useRef, useEffect, useState, type MutableRefObject } from "react";
 
-export function Values() {
+type Props = {
+  secondPartRef: MutableRefObject<HTMLDivElement | null>;
+};
+
+export function Values({ secondPartRef }: Props) {
   const valuesRef = useRef(null);
   const [isEnter, setIsEnter] = useState(false);
 
