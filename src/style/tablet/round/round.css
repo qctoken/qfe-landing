@@ -9,6 +9,14 @@
     padding: 34px 23px 30px 27px;
 }
 
+.round__card:hover .round__sum{
+    display: none;
+}
+
+.round__card:hover .round__sum_hover{
+    display: block;
+}
+
 .round__sum{
     width: 204px;
     margin: 12px auto 0;

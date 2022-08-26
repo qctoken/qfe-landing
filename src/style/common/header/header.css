@@ -15,6 +15,18 @@
     position: relative;
 }
 
+.header__top-line{
+    position: fixed;
+    width: 100%;
+    background: #E7E7E9;
+    top: 0;
+    left: 0;
+    z-index: 102;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .header__logo{
     width: 108px;
 }
@@ -22,18 +34,7 @@
 .menu{
     padding: 0;
     margin: 0;
-}
-
-.menu__item.active{
-    color: #005FFF;
-}
-
-.menu__item:hover{
-    color: #005FFF;
-}
-
-.active .menu__item:hover{
-    color: #fff;
+    position: relative;
 }
 
 .menu__button{

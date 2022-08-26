@@ -1,12 +1,93 @@
+import { useRef, useEffect, useState } from "react";
 import colosseum_logo from "../images/colosseum_logo.svg";
 import colosseum_token from "../images/colosseum_token.png";
 import virualW from "../images/virualW.png";
 import colesseum_sum from "../images/colesseum_sum.png";
 
+import {
+  handleClickPartnerArrowRight,
+  handleClickPartnerArrowLeft,
+  refresh_num,
+  refresh_color,
+} from "../utils/partner";
+
 export function Partner() {
+  const VWBlockRef = useRef<HTMLDivElement>(null);
+  const [isVWAnimated, setIsVWAnimated] = useState(false);
+
+  const [isPopUpVisible, setIsPopUpVisible] = useState(false);
+
+  function handleClickPopUp(event: any){
+    let pocket_num;
+
+    if(event.currentTarget?.classList.contains('partner__pocket')){
+      pocket_num = event.currentTarget.getAttribute('pocket-num');
+      document.querySelector('.partner__pocketAbout[pocket-num="'+pocket_num+'"]')!.classList.add("active");
+
+      refresh_num(pocket_num);
+      refresh_color(pocket_num);
+      setIsPopUpVisible((prev) => !prev);
+    }
+    else if(event.target?.classList.contains('partner__popUp')){
+      document.querySelector('.partner__pocketAbout.active')!.classList.remove("active");
+      setIsPopUpVisible((prev) => !prev);
+    }
+  };
+
+  useEffect(() => {
+    const partner__arrow_left = document.querySelector('.partner__arrow-left');
+    const partner__arrow_right = document.querySelector('.partner__arrow-right');
+
+    partner__arrow_right!.addEventListener("click", handleClickPartnerArrowRight);
+    partner__arrow_left!.addEventListener("click", handleClickPartnerArrowLeft);
+
+    return () => {
+      partner__arrow_right!.removeEventListener("click", handleClickPartnerArrowRight);
+      partner__arrow_left!.removeEventListener("click", handleClickPartnerArrowLeft);
+    };
+  });
+
+  useEffect(() => {
+    const partner__button = document.querySelector('.partner__button');
+
+    const form_appear = function(event: any){
+      const partner__formBlock = document.querySelector('.partner__formBlock');
+      partner__formBlock!.classList.add('active');
+
+      setTimeout(function(){partner__button!.setAttribute('type', 'submit');}, 200);
+    }
+
+    partner__button!.addEventListener('click', form_appear);
+
+    return () => {
+      partner__button!.removeEventListener('click', form_appear);
+    };
+  });
+
+  useEffect(() => {
+    let is_showed = false;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !is_showed) {
+          setIsVWAnimated(true);
+
+          is_showed = true;
+          observer.disconnect();
+        }
+      });
+    });
+
+    observer.observe(VWBlockRef.current!);
+
+    return () => {
+      observer.disconnect;
+    };
+  }, []);
   return (
     <div id="partner" className="partner">
-      <div id="partner__pocketBlockBack" className="partner__pocketBlockBack">
+      <div id="partner__pocketBlockBack" 
+        className={`partner__pocketBlockBack ${isPopUpVisible ? "partner__pocketBlockBack_visible" : ""}`}
+        onClick={handleClickPopUp}>
           <div className="partner__popUp" pocket-count="3">
               <div className="partner__pocketBlock" >
                   <div className="partner__pocketBlockContent">
@@ -17,8 +98,8 @@ export function Partner() {
                               <span className="partner__nav-stick">/</span>
                               <span className="partner__nav-max">03</span>
                           </div>
-                          <a className="partner__arrow-left"><svg width="8" height="14" viewBox="0 0 8 14" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.253 2.03104C0.934908 1.8083 0.857614 1.36987 1.08036 1.05177C1.3031 0.733685 1.74153 0.656391 2.05962 0.879134L1.68783 1.41008C2.05963 0.879137 2.05974 0.879213 2.05986 0.879299L2.0602 0.87954L2.06121 0.880247L2.0645 0.882558L2.07606 0.890726C2.08596 0.89773 2.10017 0.907833 2.11841 0.920902C2.1549 0.947041 2.20755 0.985065 2.27404 1.03392C2.40698 1.13159 2.5956 1.2728 2.82141 1.44908C3.27197 1.80083 3.87565 2.29619 4.48206 2.86716C5.08526 3.43511 5.70896 4.09441 6.18682 4.77496C6.65116 5.43624 7.04694 6.2136 7.04694 6.99973C7.04694 7.78571 6.65112 8.56298 6.18681 9.22419C5.70896 9.90468 5.08527 10.564 4.48208 11.132C3.87568 11.703 3.27201 12.1984 2.82146 12.5502C2.59566 12.7265 2.40703 12.8678 2.2741 12.9655C2.2076 13.0143 2.15496 13.0524 2.11847 13.0785C2.10023 13.0916 2.08602 13.1017 2.07613 13.1087L2.06456 13.1169L2.06128 13.1192L2.05992 13.1201C2.0598 13.1202 2.05969 13.1203 1.65631 12.5444L2.05969 13.1203C1.74162 13.3431 1.30318 13.2658 1.0804 12.9478C0.857656 12.6297 0.934843 12.1914 1.25279 11.9686C1.25283 11.9685 1.25275 11.9686 1.25279 11.9686L1.25485 11.9671L1.26339 11.9611C1.27124 11.9555 1.28334 11.9469 1.29943 11.9354C1.33161 11.9123 1.37968 11.8776 1.44135 11.8323C1.56477 11.7416 1.74236 11.6087 1.956 11.4418C2.38436 11.1074 2.95256 10.6407 3.51804 10.1082C4.08672 9.57269 4.63491 8.98718 5.03596 8.41605C5.45057 7.82563 5.64069 7.34446 5.64069 6.99973C5.64069 6.65476 5.45053 6.17348 5.03595 5.58306C4.63491 5.01191 4.08674 4.42644 3.51806 3.891C2.9526 3.35858 2.3844 2.89195 1.95605 2.55755C1.74241 2.39076 1.56482 2.25785 1.44141 2.16718C1.37974 2.12186 1.33167 2.08716 1.29949 2.06411C1.28341 2.05258 1.2713 2.04398 1.26345 2.03842L1.25492 2.03239L1.253 2.03104Z"/></svg></a>
-                          <a className="partner__arrow-right"><svg width="8" height="14" viewBox="0 0 8 14" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.253 2.03104C0.934908 1.8083 0.857614 1.36987 1.08036 1.05177C1.3031 0.733685 1.74153 0.656391 2.05962 0.879134L1.68783 1.41008C2.05963 0.879137 2.05974 0.879213 2.05986 0.879299L2.0602 0.87954L2.06121 0.880247L2.0645 0.882558L2.07606 0.890726C2.08596 0.89773 2.10017 0.907833 2.11841 0.920902C2.1549 0.947041 2.20755 0.985065 2.27404 1.03392C2.40698 1.13159 2.5956 1.2728 2.82141 1.44908C3.27197 1.80083 3.87565 2.29619 4.48206 2.86716C5.08526 3.43511 5.70896 4.09441 6.18682 4.77496C6.65116 5.43624 7.04694 6.2136 7.04694 6.99973C7.04694 7.78571 6.65112 8.56298 6.18681 9.22419C5.70896 9.90468 5.08527 10.564 4.48208 11.132C3.87568 11.703 3.27201 12.1984 2.82146 12.5502C2.59566 12.7265 2.40703 12.8678 2.2741 12.9655C2.2076 13.0143 2.15496 13.0524 2.11847 13.0785C2.10023 13.0916 2.08602 13.1017 2.07613 13.1087L2.06456 13.1169L2.06128 13.1192L2.05992 13.1201C2.0598 13.1202 2.05969 13.1203 1.65631 12.5444L2.05969 13.1203C1.74162 13.3431 1.30318 13.2658 1.0804 12.9478C0.857656 12.6297 0.934843 12.1914 1.25279 11.9686C1.25283 11.9685 1.25275 11.9686 1.25279 11.9686L1.25485 11.9671L1.26339 11.9611C1.27124 11.9555 1.28334 11.9469 1.29943 11.9354C1.33161 11.9123 1.37968 11.8776 1.44135 11.8323C1.56477 11.7416 1.74236 11.6087 1.956 11.4418C2.38436 11.1074 2.95256 10.6407 3.51804 10.1082C4.08672 9.57269 4.63491 8.98718 5.03596 8.41605C5.45057 7.82563 5.64069 7.34446 5.64069 6.99973C5.64069 6.65476 5.45053 6.17348 5.03595 5.58306C4.63491 5.01191 4.08674 4.42644 3.51806 3.891C2.9526 3.35858 2.3844 2.89195 1.95605 2.55755C1.74241 2.39076 1.56482 2.25785 1.44141 2.16718C1.37974 2.12186 1.33167 2.08716 1.29949 2.06411C1.28341 2.05258 1.2713 2.04398 1.26345 2.03842L1.25492 2.03239L1.253 2.03104Z"/></svg></a>
+                          <a className="partner__arrow-left"><svg width="8" height="14" viewBox="0 0 8 14" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M1.253 2.03104C0.934908 1.8083 0.857614 1.36987 1.08036 1.05177C1.3031 0.733685 1.74153 0.656391 2.05962 0.879134L1.68783 1.41008C2.05963 0.879137 2.05974 0.879213 2.05986 0.879299L2.0602 0.87954L2.06121 0.880247L2.0645 0.882558L2.07606 0.890726C2.08596 0.89773 2.10017 0.907833 2.11841 0.920902C2.1549 0.947041 2.20755 0.985065 2.27404 1.03392C2.40698 1.13159 2.5956 1.2728 2.82141 1.44908C3.27197 1.80083 3.87565 2.29619 4.48206 2.86716C5.08526 3.43511 5.70896 4.09441 6.18682 4.77496C6.65116 5.43624 7.04694 6.2136 7.04694 6.99973C7.04694 7.78571 6.65112 8.56298 6.18681 9.22419C5.70896 9.90468 5.08527 10.564 4.48208 11.132C3.87568 11.703 3.27201 12.1984 2.82146 12.5502C2.59566 12.7265 2.40703 12.8678 2.2741 12.9655C2.2076 13.0143 2.15496 13.0524 2.11847 13.0785C2.10023 13.0916 2.08602 13.1017 2.07613 13.1087L2.06456 13.1169L2.06128 13.1192L2.05992 13.1201C2.0598 13.1202 2.05969 13.1203 1.65631 12.5444L2.05969 13.1203C1.74162 13.3431 1.30318 13.2658 1.0804 12.9478C0.857656 12.6297 0.934843 12.1914 1.25279 11.9686C1.25283 11.9685 1.25275 11.9686 1.25279 11.9686L1.25485 11.9671L1.26339 11.9611C1.27124 11.9555 1.28334 11.9469 1.29943 11.9354C1.33161 11.9123 1.37968 11.8776 1.44135 11.8323C1.56477 11.7416 1.74236 11.6087 1.956 11.4418C2.38436 11.1074 2.95256 10.6407 3.51804 10.1082C4.08672 9.57269 4.63491 8.98718 5.03596 8.41605C5.45057 7.82563 5.64069 7.34446 5.64069 6.99973C5.64069 6.65476 5.45053 6.17348 5.03595 5.58306C4.63491 5.01191 4.08674 4.42644 3.51806 3.891C2.9526 3.35858 2.3844 2.89195 1.95605 2.55755C1.74241 2.39076 1.56482 2.25785 1.44141 2.16718C1.37974 2.12186 1.33167 2.08716 1.29949 2.06411C1.28341 2.05258 1.2713 2.04398 1.26345 2.03842L1.25492 2.03239L1.253 2.03104Z"/></svg></a>
+                          <a className="partner__arrow-right"><svg width="8" height="14" viewBox="0 0 8 14" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M1.253 2.03104C0.934908 1.8083 0.857614 1.36987 1.08036 1.05177C1.3031 0.733685 1.74153 0.656391 2.05962 0.879134L1.68783 1.41008C2.05963 0.879137 2.05974 0.879213 2.05986 0.879299L2.0602 0.87954L2.06121 0.880247L2.0645 0.882558L2.07606 0.890726C2.08596 0.89773 2.10017 0.907833 2.11841 0.920902C2.1549 0.947041 2.20755 0.985065 2.27404 1.03392C2.40698 1.13159 2.5956 1.2728 2.82141 1.44908C3.27197 1.80083 3.87565 2.29619 4.48206 2.86716C5.08526 3.43511 5.70896 4.09441 6.18682 4.77496C6.65116 5.43624 7.04694 6.2136 7.04694 6.99973C7.04694 7.78571 6.65112 8.56298 6.18681 9.22419C5.70896 9.90468 5.08527 10.564 4.48208 11.132C3.87568 11.703 3.27201 12.1984 2.82146 12.5502C2.59566 12.7265 2.40703 12.8678 2.2741 12.9655C2.2076 13.0143 2.15496 13.0524 2.11847 13.0785C2.10023 13.0916 2.08602 13.1017 2.07613 13.1087L2.06456 13.1169L2.06128 13.1192L2.05992 13.1201C2.0598 13.1202 2.05969 13.1203 1.65631 12.5444L2.05969 13.1203C1.74162 13.3431 1.30318 13.2658 1.0804 12.9478C0.857656 12.6297 0.934843 12.1914 1.25279 11.9686C1.25283 11.9685 1.25275 11.9686 1.25279 11.9686L1.25485 11.9671L1.26339 11.9611C1.27124 11.9555 1.28334 11.9469 1.29943 11.9354C1.33161 11.9123 1.37968 11.8776 1.44135 11.8323C1.56477 11.7416 1.74236 11.6087 1.956 11.4418C2.38436 11.1074 2.95256 10.6407 3.51804 10.1082C4.08672 9.57269 4.63491 8.98718 5.03596 8.41605C5.45057 7.82563 5.64069 7.34446 5.64069 6.99973C5.64069 6.65476 5.45053 6.17348 5.03595 5.58306C4.63491 5.01191 4.08674 4.42644 3.51806 3.891C2.9526 3.35858 2.3844 2.89195 1.95605 2.55755C1.74241 2.39076 1.56482 2.25785 1.44141 2.16718C1.37974 2.12186 1.33167 2.08716 1.29949 2.06411C1.28341 2.05258 1.2713 2.04398 1.26345 2.03842L1.25492 2.03239L1.253 2.03104Z"/></svg></a>
                       </div>
                       <div className="partner__pocketAbout" pocket-num="1">
                           <h4 className="partner__pocketAboutName">Сооснователь-Владелец</h4>
@@ -111,7 +192,7 @@ export function Partner() {
         <span className="partner__text partner__text_left">SEED ROUND</span>
         <span className="partner__text partner__text_right">PRICE 0.70$</span>
         <img src={colosseum_token} className="partner__token" />
-        <div pocket-num="1" className="partner__pocket partner__pocket_white partner__pocket_right">
+        <div onClick={handleClickPopUp} pocket-num="1" className="partner__pocket partner__pocket_white partner__pocket_right">
           <span className="partner__pocketText">ПАКЕТ</span>
           <h4 className="partner__pocketName partner__pocketName_black">
             Сооснователь-Владелец
@@ -134,7 +215,7 @@ export function Partner() {
             цена 1 qct до 15.05.22 0,7$
           </span>
         </div>
-        <div pocket-num="2" className="partner__pocket partner__pocket_black partner__pocket_left">
+        <div onClick={handleClickPopUp} pocket-num="2" className="partner__pocket partner__pocket_black partner__pocket_left">
           <span className="partner__pocketText">ПАКЕТ</span>
           <h4 className="partner__pocketName partner__pocketName_blue">
             Владелец-Инвестор
@@ -159,7 +240,7 @@ export function Partner() {
             цена 1 qct до 15.05.22 0,7$
           </span>
         </div>
-        <div pocket-num="3" className="partner__pocket partner__pocket_black partner__pocket_center">
+        <div onClick={handleClickPopUp} pocket-num="3" className="partner__pocket partner__pocket_black partner__pocket_center">
           <span className="partner__pocketText">ПАКЕТ</span>
           <h4 className="partner__pocketName partner__pocketName_white">
             Инвестор-Владелец
@@ -184,7 +265,7 @@ export function Partner() {
             цена 1 qct до 15.05.22 0,7$
           </span>
         </div>
-        <div className="virtualWorld__content virtualWorld__content_desktop">
+        <div ref={VWBlockRef} className={`virtualWorld__content virtualWorld__content_desktop ${isVWAnimated ? "virtualWorld__content_animated" : ""}`}>
           <h2 className="virtualWorld__head">
             Проводите курсы
             <br />в виртуальном мире
@@ -199,7 +280,7 @@ export function Partner() {
           </span>
           <img src={virualW} className="virtualWorld__img" />
         </div>
-        <span className="partner__week">
+        <span id="partner__success" className="partner__week">
           <i className="partner__week_blue">За 2 недели</i>{" "}
           <i className="partner__week_desktop">мы</i> закрыли Seed Round
         </span>

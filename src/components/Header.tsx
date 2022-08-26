@@ -1,4 +1,7 @@
+import { useEffect, useState} from "react";
+
 import { Link } from "react-router-dom";
+
 import logo from "../images/logo.svg";
 import header_arrow_menu from "../images/header_arrow_menu.svg";
 
@@ -8,46 +11,68 @@ type Props = {
 };
 
 export function Header({ startLink = "", buyQCTLink = "" }: Props) {
+  const [isHide, setIsHide] = useState(false);
+  const [isMenuButtonClose, setIsMenuButtonClose] = useState(false);
+
+  const handleClickArrow = () => {
+    setIsHide((prev) => !prev);
+  };
+
+  const handleClickMenuButton = () => {
+    setIsMenuButtonClose((prev) => !prev);
+  };
+
+  useEffect(() => {
+    let prev_scroll_pos = window.pageYOffset;
+    const menu_top = document.querySelector('.header__top-line');
+    const menu__hide = document.querySelector('.menu__hide');
+    window.onscroll = function() {
+      const current_scroll_pos = window.pageYOffset;
+        if (prev_scroll_pos > current_scroll_pos) {
+            menu_top!.classList.add('header__top-line_visible');
+            menu_top!.classList.remove('header__top-line_hidden');
+        } else {
+            menu_top!.classList.remove('header__top-line_visible');
+            menu_top!.classList.add('header__top-line_hidden');
+            menu__hide!.classList.remove('menu__hide_visible');
+        }
+        prev_scroll_pos = current_scroll_pos;
+    }
+
+    const land_html = document.querySelector("html");
+    land_html!.style.scrollBehavior = "smooth";
+  });
+
+  useEffect(() => {
+    const menu_links = document.querySelectorAll('.menu__item');
+
+    menu_links!.forEach(item => {
+      item.addEventListener('click', () => {
+        dellActiveMenuLink();
+        item.classList.add('active');
+      });
+    });
+
+    const header__logo = document.querySelector('.header__logo');
+    header__logo!.addEventListener('click', () => {
+      dellActiveMenuLink();
+      document.querySelector('.menu__item_main')!.classList.add('active');
+    });
+
+    function dellActiveMenuLink(){
+      const active_item = document.querySelectorAll('.menu .active');    
+      active_item!.forEach(item => { item.classList.remove('active');});
+    }
+  });
+
   return (
     <>
       <div className="header__background"></div>
-      <ul className="menu menu_mob">
-        <a className="menu__link active" href="#">
-          <li className="menu__item">Главная</li>
-        </a>
-        <a className="menu__link" href="#step-block">
-          <li className="menu__item">Твой путь</li>
-        </a>
-        <a className="menu__link" href="#roadmap">
-          <li className="menu__item">Roadmap</li>
-        </a>
-        <a className="menu__link" href="#dblock">
-          <li className="menu__item">Метавселенная</li>
-        </a>
-        <a className="menu__link" href="#values">
-          <li className="menu__item">Идеология</li>
-        </a>
-        <a className="menu__link" href="#bali">
-          <li className="menu__item">Недвижимость</li>
-        </a>
-        <a className="menu__link" href="#command">
-          <li className="menu__item">Команда</li>
-        </a>
-        <a className="menu__link" href="#partner">
-          <li className="menu__item">Партнерство</li>
-        </a>
-        <a className="menu__link" href="#round">
-          <li className="menu__item">Достижения</li>
-        </a>
-        <a className="menu__link" href="#job">
-          <li className="menu__item">Начать с нами</li>
-        </a>
-      </ul>
       <header className="header">
         <div className="header__top-line">
-          <img src={logo} className="header__logo" />
-          <ul className="menu">
-            <li className="menu__item active">
+          <a href="#"><img src={logo} className="header__logo" /></a>
+          <ul className={`menu ${isMenuButtonClose ? "menu_showed" : ""}`}>
+            <li className="menu__item menu__item_main active">
               <a className="menu__link" href="#">
                 Главная
               </a>
@@ -82,12 +107,12 @@ export function Header({ startLink = "", buyQCTLink = "" }: Props) {
                 Команда
               </a>
             </li>
-            <li className="menu__arrow">
-              <a className="menu__link" href="#">
+            <li className="menu__arrow" onClick={handleClickArrow}>
+              <a>
                 <img src={header_arrow_menu} />
               </a>
             </li>
-            <ul className="menu__hide">
+            <ul className={`menu__hide ${isHide ? "" : "menu__hide_visible"}`}>
               <li className="menu__item">
                 <a className="menu__link" href="#partner">
                   Партнерство
@@ -108,7 +133,12 @@ export function Header({ startLink = "", buyQCTLink = "" }: Props) {
           <Link to={buyQCTLink} className="menu__topButton">
             Купить QCT
           </Link>
-          <a className="menu__button">
+          <a
+            onClick={handleClickMenuButton}
+            className={`menu__button ${
+              isMenuButtonClose ? "menu__button_close" : ""
+            }`}
+          >
             <div className="menu__line"></div>
             <div className="menu__line"></div>
             <div className="menu__line"></div>
@@ -130,7 +160,7 @@ export function Header({ startLink = "", buyQCTLink = "" }: Props) {
           работы в любых валютах из любой точки Земли
         </span>
         <div className="header__butBlock">
-          <Link to={startLink} className="header__button">
+          <Link to={startLink} className="menu__topButton">
             Начать пользоваться
           </Link>
           <span className="header__button_text">Стать инвестором</span>

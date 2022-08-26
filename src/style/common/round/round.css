@@ -20,6 +20,7 @@
     background: #FFFFFF;
     box-shadow: 0px 44px 58px rgba(17, 46, 99, 0.1);
     border-radius: 25px;
+    cursor: pointer;
 }
 
 .round__name{
@@ -39,6 +40,10 @@
     display: block;
 }
 
+.round__sum_hover{
+    display: none;
+}
+
 .round__deskr{
     position: absolute;
     font-family: 'Rubik';
@@ -49,6 +54,20 @@
 
 .round__img{
     position: absolute;
+    opacity: 0;
+}
+
+.round__img.round__img_animated{
+    animation: soft-img-appear 1s linear forwards;
+}
+
+@keyframes soft-img-appear {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
 }
 
 .round__text{

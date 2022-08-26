@@ -61,6 +61,10 @@
     padding-right: 0;
 }
 
+.partner__pocket:hover{
+    transform: scale(1.1);
+}
+
 .partner__pocket_black{
     background: #282828;
 }

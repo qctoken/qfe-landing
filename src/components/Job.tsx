@@ -9,10 +9,42 @@ import jobAvatar_4 from "../images/jobAvatar_4.png";
 import jobAvatar_5 from "../images/jobAvatar_5.png";
 import jobAvatar_6 from "../images/jobAvatar_6.png";
 
+import { useRef, useEffect, useState } from "react";
+
 export function Job() {
+
+  const JobBlockRef = useRef<HTMLDivElement>(null);
+  const [isJobAnimated, setIsJobAnimated] = useState(false);
+  const [isPopUpVisible, setIsPopUpVisible] = useState(false);
+
+  const handleClickPopUp = () => {
+    setIsPopUpVisible((prev) => !prev);
+  };
+
+
+  useEffect(() => {
+    let is_showed = false;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !is_showed) {
+          setIsJobAnimated(true);
+
+          is_showed = true;
+          observer.disconnect();
+        }
+      });
+    });
+
+    observer.observe(JobBlockRef.current!);
+
+    return () => {
+      observer.disconnect;
+    };
+  }, []);
+
   return (
-    <div id="job" className="job">
-      <div className="job__popUpBack"></div>
+    <div id="job" className={`job ${isJobAnimated ? "job_animated" : ""}`} ref={JobBlockRef}>
+      <div className={`job__popUpBack ${isPopUpVisible ? "job__popUpBack_visible" : ""}`} onClick={handleClickPopUp}></div>
       <div className="job__content">
         <h2 className="job__head">
           Нам <i className="job__textBlue">нужны</i>{" "}
@@ -28,7 +60,7 @@ export function Job() {
         <img src={job_img_1} className="job__img job__img_logo" />
         <div className="job__light"></div>
         <img src={job_img_2} className="job__img job__img_people" />
-        <div className="job__popUp">
+        <div className={`job__popUp ${isPopUpVisible ? "job__popUp_visible" : ""}`}>
           <div className="job__form">
             <img src={form_logo} className="job__formLogo" />
             <form>
@@ -81,7 +113,7 @@ export function Job() {
             </div>
           </div>
         </div>
-        <a className="job__button job__button_mob">
+        <a className="job__button job__button_mob" onClick={handleClickPopUp}>
           <img src={form_button} className="job__fromButtonImg" />
           Хочу в команду
         </a>

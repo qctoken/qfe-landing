@@ -17,6 +17,8 @@ import avatar_17 from "../images/avatar_17.png";
 import avatar_18 from "../images/avatar_18.png";
 import avatar_19 from "../images/avatar_19.png";
 
+import { useEffect } from "react";
+
 const COMMANDS = [
   {
     name: "Виталий Кузнецов",
@@ -140,6 +142,59 @@ const COMMANDS = [
 ];
 
 export function Command() {
+  useEffect(() => {
+    let command__links = document.querySelectorAll('.command__link');
+    const command__backPopUp = document.querySelector('.command__backPopUp');
+
+    if(document.body.clientWidth <= 1438)
+    {
+        const command__popUpClose = document.querySelectorAll('.command__popUpClose');
+
+        command__links.forEach(item => {
+            item.addEventListener('click', active_command);
+        });
+
+        command__backPopUp!.addEventListener("click", hide_popUp);
+        command__popUpClose.forEach(item => {
+            item.addEventListener('click', hide_popUp);
+        });
+    }
+    else
+    {
+        command__links.forEach(item => {
+          item.addEventListener("mouseout", command_hover);
+        });
+    }
+
+    function command_hover(event: any) {
+        event.currentTarget.classList.add('command__link_unhovered');
+        setTimeout(function (){event?.currentTarget.classList.remove('command__link_unhovered');}, 500);
+    }
+
+    function hide_popUp(){
+        command__backPopUp!.classList.remove('command__backPopUp_visible');
+        const command__popUpPersonBlock_active = document.querySelector('.command__popUpPersonBlock.active'); 
+        command__popUpPersonBlock_active!.classList.remove('active');
+    }
+
+    function active_command(event: any){
+      command__backPopUp!.classList.add('command__backPopUp_visible');
+
+      let card_num = event.currentTarget.getAttribute('card-num');
+      const command__popUpPersonBlock = document.querySelector('.command__popUpPersonBlock[card-num="'+ card_num +'"]'); 
+      command__popUpPersonBlock!.classList.add("active");       
+    }
+
+    return () => {
+      command__backPopUp!.removeEventListener("click", hide_popUp);
+      command__links.forEach(item => {
+        item.removeEventListener("onmouseout", command_hover);
+      });
+      command__links.forEach(item => {
+        item.removeEventListener('click', active_command);
+    });
+    };
+  });
   return (
     <>
       <div id="command" className="command">

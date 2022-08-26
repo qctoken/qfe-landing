@@ -1,14 +1,27 @@
 .scroll-line{
-    overflow-y: scroll;
+    position: relative;
+    width: 100%;
+    height: 244px;
+    overflow-y: hidden;
 }
 
 .scroll-line__bar{
-    margin-top: 20px;
     width: 2900px;
     height: 244px;
-    margin-left: 8%;
+    padding-left: 100%;
+    margin-top: 20px;
+    animation: line-scroll 30s linear infinite alternate;
 }
 
 .scroll-line__item{
     box-shadow: 0px 10px 20px rgb(17 46 99 / 10%);
+}
+
+@keyframes line-scroll {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(-100%, 0);
+    }
 }
