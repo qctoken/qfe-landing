@@ -53,7 +53,7 @@ const COMMANDS = [
     position: "Хозяин процессов",
     img: avatar_16,
     description:
-      'Держит ниточки всех невидимых процессов в своих руках, видит картину целиком и не допускает лобового столкновения задач.',
+      "Держит ниточки всех невидимых процессов в своих руках, видит картину целиком и не допускает лобового столкновения задач.",
   },
   {
     name: "Дана Сераева",
@@ -123,51 +123,50 @@ const COMMANDS = [
     position: "Financier",
     img: avatar_17,
     description:
-      'Разрабатывает тактику  и стратегию распределения средств, анализирует эффективность затрат, планирует результаты, распределяет потоки, контролирует прибыль и активы.',
+      "Разрабатывает тактику  и стратегию распределения средств, анализирует эффективность затрат, планирует результаты, распределяет потоки, контролирует прибыль и активы.",
   },
   {
     name: "Светлана Бабина",
     position: "Бизнес  ассистент",
     img: avatar_18,
     description:
-      'Оптимизирует время фаундера. Организовывает тренинги, договаривается о встречах, налаживает коммуникацию с партнерами.',
+      "Оптимизирует время фаундера. Организовывает тренинги, договаривается о встречах, налаживает коммуникацию с партнерами.",
   },
   {
     name: "Дархан Калматай",
     position: "Videomaker",
     img: avatar_19,
     description:
-      'Казахский парень, который предпочитает понты. Снимает видео для души и с душой. Если посмотреть в глаза, то можете увидеть прекрасное.',
+      "Казахский парень, который предпочитает понты. Снимает видео для души и с душой. Если посмотреть в глаза, то можете увидеть прекрасное.",
   },
 ];
 
 export function Command() {
   useEffect(() => {
-    const command__links = document.querySelectorAll('.command__link');
-    const command__backPopUp = document.querySelector('.command__backPopUp');
+    const command__links = document.querySelectorAll(".command__link");
+    const command__backPopUp = document.querySelector(".command__backPopUp");
 
-    if(document.body.clientWidth <= 1438)
-    {
-        const command__popUpClose = document.querySelectorAll('.command__popUpClose');
+    if (document.body.clientWidth <= 1438) {
+      const command__popUpClose = document.querySelectorAll(
+        ".command__popUpClose"
+      );
 
-        command__links.forEach(item => {
-            item.addEventListener('click', active_command);
-        });
+      command__links.forEach((item) => {
+        item.addEventListener("click", active_command);
+      });
 
-        command__backPopUp!.addEventListener("click", hide_popUp);
-        command__popUpClose.forEach(item => {
-            item.addEventListener('click', hide_popUp);
-        });
-    }
-    else
-    {
-        command__links.forEach((item, index) => {
-          item.addEventListener("mouseout", command_unhover);
-          item.addEventListener("mouseover", command_hover);
-          if(index === command__links.length - 1){
-            item.addEventListener("mouseover", command_hover_last);
-          }
-        });
+      command__backPopUp!.addEventListener("click", hide_popUp);
+      command__popUpClose.forEach((item) => {
+        item.addEventListener("click", hide_popUp);
+      });
+    } else {
+      command__links.forEach((item, index) => {
+        item.addEventListener("mouseout", command_unhover);
+        item.addEventListener("mouseover", command_hover);
+        if(index === command__links.length - 1){
+          item.addEventListener("mouseover", command_hover_last);
+        }
+      });
     }
 
     function command_unhover(event: any) {
@@ -185,28 +184,32 @@ export function Command() {
       setTimeout(() => {scrollBlock!.scrollLeft = scrollBlock!.scrollWidth;}, 200);
     }
 
-    function hide_popUp(){
-        command__backPopUp!.classList.remove('command__backPopUp_visible');
-        const command__popUpPersonBlock_active = document.querySelector('.command__popUpPersonBlock.active'); 
-        command__popUpPersonBlock_active!.classList.remove('active');
+    function hide_popUp() {
+      command__backPopUp!.classList.remove("command__backPopUp_visible");
+      const command__popUpPersonBlock_active = document.querySelector(
+        ".command__popUpPersonBlock.active"
+      );
+      command__popUpPersonBlock_active!.classList.remove("active");
     }
 
-    function active_command(event: any){
-      command__backPopUp!.classList.add('command__backPopUp_visible');
+    function active_command(event: any) {
+      command__backPopUp!.classList.add("command__backPopUp_visible");
 
-      let card_num = event.currentTarget.getAttribute('card-num');
-      const command__popUpPersonBlock = document.querySelector('.command__popUpPersonBlock[card-num="'+ card_num +'"]'); 
-      command__popUpPersonBlock!.classList.add("active");       
+      let card_num = event.currentTarget.getAttribute("card-num");
+      const command__popUpPersonBlock = document.querySelector(
+        '.command__popUpPersonBlock[card-num="' + card_num + '"]'
+      );
+      command__popUpPersonBlock!.classList.add("active");
     }
 
     return () => {
       command__backPopUp!.removeEventListener("click", hide_popUp);
-      command__links.forEach(item => {
+      command__links.forEach((item) => {
         item.removeEventListener("onmouseout", command_hover);
       });
-      command__links.forEach(item => {
-        item.removeEventListener('click', active_command);
-    });
+      command__links.forEach((item) => {
+        item.removeEventListener("click", active_command);
+      });
     };
   });
   return (
@@ -285,9 +288,7 @@ export function Command() {
               <span className="command__position command__position_popUp">
                 {info.position}
               </span>
-              <h5 className="command__name command__name_popUp">
-                {info.name}
-              </h5>
+              <h5 className="command__name command__name_popUp">{info.name}</h5>
             </div>
             <div className="command__about command__about_mob">
               <span className="command__aboutHead">Обо мне</span>

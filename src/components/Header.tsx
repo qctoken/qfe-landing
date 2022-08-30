@@ -1,4 +1,4 @@
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import logo from "../images/logo.svg";
@@ -21,56 +21,59 @@ export function Header({ startLink = "", buyQCTLink = "" }: Props) {
     setIsMenuButtonClose((prev) => !prev);
   };
 
-
   useEffect(() => {
-    const land_block = document.querySelector('.landing_root')?.parentElement?.parentElement;
-    const menu_top = document.querySelector('.header__top-line');
-    const menu__hide = document.querySelector('.menu__hide');
+const land_block = document.querySelector(".landing_root")?.parentElement?.parentElement;
+    const menu_top = document.querySelector(".header__top-line");
+    const menu__hide = document.querySelector(".menu__hide");
 
     let prev_scroll_pos = land_block!.scrollTop;
-    document.onscroll = function() {
+    const onScroll = () => {
       const current_scroll_pos = land_block!.scrollTop;
-      console.log(current_scroll_pos);
         if (prev_scroll_pos > current_scroll_pos) {
-            menu_top!.classList.add('header__top-line_visible');
-            menu_top!.classList.remove('header__top-line_hidden');
+            menu_top!.classList.add("header__top-line_visible");
+            menu_top!.classList.remove("header__top-line_hidden");
         } else {
-            menu_top!.classList.remove('header__top-line_visible');
-            menu_top!.classList.add('header__top-line_hidden');
-            menu__hide!.classList.remove('menu__hide_visible');
+            menu_top!.classList.remove("header__top-line_visible");
+            menu_top!.classList.add("header__top-line_hidden");
+            menu__hide!.classList.remove("menu__hide_visible");
         }
         prev_scroll_pos = current_scroll_pos;
-    }
+    };
 
     const land_html = document.querySelector("html");
     land_html!.style.scrollBehavior = "smooth";
+
+    document.addEventListener("scroll", onScroll);
+
+    return () => {
+      document.removeEventListener("scroll", onScroll);
+    };
   });
 
   useEffect(() => {
-    const menu_links = document.querySelectorAll('.menu__item');
+    const menu_links = document.querySelectorAll(".menu__item");
 
-    menu_links!.forEach(item => {
-      item.addEventListener('click', () => {
+    menu_links!.forEach((item) => {
+      item.addEventListener("click", () => {
         dellActiveMenuLink();
-        item.classList.add('active');
+        item.classList.add("active");
       });
     });
 
-    const header__logo = document.querySelector('.header__logo');
-    header__logo!.addEventListener('click', () => {
+    const header__logo = document.querySelector(".header__logo");
+    header__logo!.addEventListener("click", () => {
       dellActiveMenuLink();
-      document.querySelector('.menu__item_main')!.classList.add('active');
+      document.querySelector(".menu__item_main")!.classList.add("active");
     });
 
-    function dellActiveMenuLink(){
-      const active_item = document.querySelectorAll('.menu .active');    
-      active_item!.forEach(item => { item.classList.remove('active');});
+    function dellActiveMenuLink() {
+      const active_item = document.querySelectorAll(".menu .active");
+      active_item!.forEach((item) => {
+        item.classList.remove("active");
+      });
     }
   });
 
-  return (
-    <>
-      <div className="header__background"></div>
   return (
     <>
       <div className="header__background"></div>
@@ -108,7 +111,9 @@ export function Header({ startLink = "", buyQCTLink = "" }: Props) {
       </ul>
       <header className="header">
         <div className="header__top-line">
-          <a href="#"><img src={logo} className="header__logo" /></a>
+          <a href="#">
+            <img src={logo} className="header__logo" />
+          </a>
           <ul className={`menu ${isMenuButtonClose ? "menu_showed" : ""}`}>
             <li className="menu__item menu__item_main active">
               <a className="menu__link" href="#">

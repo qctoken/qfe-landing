@@ -17,7 +17,7 @@ export function VrBlock() {
     observer.observe(animationRef.current!);
 
     return () => {
-      observer.disconnect;
+      observer.disconnect();
     };
   }, []);
 

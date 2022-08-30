@@ -12,7 +12,6 @@ import jobAvatar_6 from "../images/jobAvatar_6.png";
 import { useRef, useEffect, useState } from "react";
 
 export function Job() {
-
   const JobBlockRef = useRef<HTMLDivElement>(null);
   const [isJobAnimated, setIsJobAnimated] = useState(false);
   const [isPopUpVisible, setIsPopUpVisible] = useState(false);
@@ -20,7 +19,6 @@ export function Job() {
   const handleClickPopUp = () => {
     setIsPopUpVisible((prev) => !prev);
   };
-
 
   useEffect(() => {
     let is_showed = false;
@@ -38,29 +36,45 @@ export function Job() {
     observer.observe(JobBlockRef.current!);
 
     return () => {
-      observer.disconnect;
+      observer.disconnect();
     };
   }, []);
 
   return (
-    <div id="job" className={`job ${isJobAnimated ? "job_animated" : ""}`} ref={JobBlockRef}>
-      <div className={`job__popUpBack ${isPopUpVisible ? "job__popUpBack_visible" : ""}`} onClick={handleClickPopUp}></div>
+    <div
+      id="job"
+      className={`job ${isJobAnimated ? "job_animated" : ""}`}
+      ref={JobBlockRef}
+    >
+      <div
+        className={`job__popUpBack ${
+          isPopUpVisible ? "job__popUpBack_visible" : ""
+        }`}
+        onClick={handleClickPopUp}
+      ></div>
       <div className="job__content">
         <h2 className="job__head">
           Нам <i className="job__textBlue">нужны</i>{" "}
           <i className="job__textBlue_mob">в команду</i>
         </h2>
         <span className="job__text">
-          Ты уверенный в себе человек с  сильными компетенциями и навыками?<br/>
-          Ты эксперт в своем деле и просто красавчик?<br/>
-          Мы объединяем крутых ребят в новый масштабный проект для совместного построения<br/>
-          компании с капитализацией минимум<br/>
-          в 1 000 000 000 $. Проявись в этом мире и оставь за собой уникальный след.
+          Ты уверенный в себе человек с сильными компетенциями и навыками?
+          <br />
+          Ты эксперт в своем деле и просто красавчик?
+          <br />
+          Мы объединяем крутых ребят в новый масштабный проект для совместного
+          построения
+          <br />
+          компании с капитализацией минимум
+          <br />в 1 000 000 000 $. Проявись в этом мире и оставь за собой
+          уникальный след.
         </span>
         <img src={job_img_1} className="job__img job__img_logo" />
         <div className="job__light"></div>
         <img src={job_img_2} className="job__img job__img_people" />
-        <div className={`job__popUp ${isPopUpVisible ? "job__popUp_visible" : ""}`}>
+        <div
+          className={`job__popUp ${isPopUpVisible ? "job__popUp_visible" : ""}`}
+        >
           <div className="job__form">
             <img src={form_logo} className="job__formLogo" />
             <form>

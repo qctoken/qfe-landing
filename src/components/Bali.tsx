@@ -27,13 +27,13 @@ export function Bali() {
   });
 
   useEffect(() => {
-    let is_showed = false;
+    let isShowed = false;
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting && !is_showed) {
+        if (entry.isIntersecting && !isShowed) {
           setIsBaliAnimated(true);
 
-          is_showed = true;
+          isShowed = true;
           observer.disconnect();
         }
       });
@@ -42,7 +42,7 @@ export function Bali() {
     observer.observe(baliBlockRef.current!);
 
     return () => {
-      observer.disconnect;
+      observer.disconnect();
     };
   }, []);
 
@@ -79,7 +79,10 @@ export function Bali() {
             <path d="M6.7398 2.05999L11.7798 7.09999H0.799805V8.89999H11.7798L6.7398 13.94L7.9998 15.2L15.1998 7.99999L7.9998 0.799988L6.7398 2.05999Z" />
           </svg>
         </a>
-        <img src={baliBack} className={`bali__img ${isBaliAnimated ? "bali__img_animated" : ""}`} />
+        <img
+          src={baliBack}
+          className={`bali__img ${isBaliAnimated ? "bali__img_animated" : ""}`}
+        />
         <div className="bali__forBlock">
           <div className="bali__nav">
             <a className="bali__arrow bali__arrow_left">

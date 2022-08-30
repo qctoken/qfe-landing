@@ -9,7 +9,6 @@ import round from "../images/round.png";
 import { useRef, useEffect, useState } from "react";
 
 export function Round() {
-
   const RoundBlockRef = useRef<HTMLDivElement>(null);
   const [isRoundAnimated, setIsRoundAnimated] = useState(false);
 
@@ -29,7 +28,7 @@ export function Round() {
     observer.observe(RoundBlockRef.current!);
 
     return () => {
-      observer.disconnect;
+      observer.disconnect();
     };
   }, []);
   return (
@@ -72,7 +71,13 @@ export function Round() {
         <a href="#" className="round__button">
           Жми и узнай подробнее
         </a>
-        <img id="round__start" src={round} className={`round__img ${isRoundAnimated ? "round__img_animated" : ""}`} />
+        <img
+          id="round__start"
+          src={round}
+          className={`round__img ${
+            isRoundAnimated ? "round__img_animated" : ""
+          }`}
+        />
       </div>
     </div>
   );
