@@ -143,7 +143,7 @@ const COMMANDS = [
 
 export function Command() {
   useEffect(() => {
-    let command__links = document.querySelectorAll('.command__link');
+    const command__links = document.querySelectorAll('.command__link');
     const command__backPopUp = document.querySelector('.command__backPopUp');
 
     if(document.body.clientWidth <= 1438)
@@ -161,14 +161,28 @@ export function Command() {
     }
     else
     {
-        command__links.forEach(item => {
-          item.addEventListener("mouseout", command_hover);
+        command__links.forEach((item, index) => {
+          item.addEventListener("mouseout", command_unhover);
+          item.addEventListener("mouseover", command_hover);
+          if(index === command__links.length - 1){
+            item.addEventListener("mouseover", command_hover_last);
+          }
         });
     }
 
-    function command_hover(event: any) {
-        event.currentTarget.classList.add('command__link_unhovered');
-        setTimeout(function (){event?.currentTarget.classList.remove('command__link_unhovered');}, 500);
+    function command_unhover(event: any) {
+      (event.currentTarget)!.classList.remove('command__link_hovered');
+      (event.currentTarget)!.classList.add('command__link_unhovered');
+    }
+
+    function command_hover(event: any){
+      (event.currentTarget)!.classList.remove('command__link_unhovered');
+      (event.currentTarget)!.classList.add('command__link_hovered');
+    }
+
+    function command_hover_last(){
+      const scrollBlock = document.querySelector('.command__scrollBlock');
+      setTimeout(() => {scrollBlock!.scrollLeft = scrollBlock!.scrollWidth;}, 200);
     }
 
     function hide_popUp(){

@@ -11,7 +11,7 @@ type Props = {
 };
 
 export function Header({ startLink = "", buyQCTLink = "" }: Props) {
-  const [isHide, setIsHide] = useState(false);
+  const [isHide, setIsHide] = useState(true);
   const [isMenuButtonClose, setIsMenuButtonClose] = useState(false);
 
   const handleClickArrow = () => {
@@ -23,11 +23,14 @@ export function Header({ startLink = "", buyQCTLink = "" }: Props) {
   };
 
   useEffect(() => {
-    let prev_scroll_pos = window.pageYOffset;
+    const land_block = document.querySelector('.landing_root')?.parentElement?.parentElement;
     const menu_top = document.querySelector('.header__top-line');
     const menu__hide = document.querySelector('.menu__hide');
-    window.onscroll = function() {
-      const current_scroll_pos = window.pageYOffset;
+
+    let prev_scroll_pos = land_block!.scrollTop;
+    document.onscroll = function() {
+      const current_scroll_pos = land_block!.scrollTop;
+      console.log(current_scroll_pos);
         if (prev_scroll_pos > current_scroll_pos) {
             menu_top!.classList.add('header__top-line_visible');
             menu_top!.classList.remove('header__top-line_hidden');
@@ -160,7 +163,7 @@ export function Header({ startLink = "", buyQCTLink = "" }: Props) {
           работы в любых валютах из любой точки Земли
         </span>
         <div className="header__butBlock">
-          <Link to={startLink} className="menu__topButton">
+          <Link to={startLink} className="header__button">
             Начать пользоваться
           </Link>
           <span className="header__button_text">Стать инвестором</span>

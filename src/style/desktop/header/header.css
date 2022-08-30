@@ -12,7 +12,7 @@
 }
 
 .header__top-line{
-    height: 110px;
+    height: 73px;
 }
 
 .header__top-line.header__top-line_visible{
@@ -25,7 +25,7 @@
 
 @keyframes soft_appear {
     0%{
-        margin-top: -110px;
+        margin-top: -73px;
     }
     100%{
         margin-top: 0;
@@ -37,7 +37,7 @@
         margin-top: 0;
     }
     100%{
-        margin-top: -110px;
+        margin-top: -73px;
     }
 }
 

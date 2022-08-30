@@ -3,6 +3,7 @@
     background: #1A1A1A;
     overflow: hidden;
     padding-bottom: 40px;
+    position: relative;
 }
 
 .tech__head{
@@ -16,8 +17,8 @@
 }
 
 .tech__img{
-    display: block;
-    margin: 0 auto;
+    position: absolute;
+    z-index: 10;
 }
 
 .tech__block{
@@ -85,4 +86,146 @@
 
 .tech__consoleText_blue{
     color: #478BFD;
+}
+
+.tech__animateBlock{
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.tech__animateLine{
+    position: absolute;
+    stroke:#478BFD;
+}
+
+.tech__animateLine_1, .tech__animateLine_5, .tech__animateLine_3{
+    animation: tech_top_lines_1 5s infinite linear;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+}
+
+@keyframes tech_top_lines_1 {
+    0%{
+        stroke-dashoffset: 100;
+    }
+
+    20%{
+        stroke-dashoffset: 0;
+    }
+
+    100%{
+        stroke-dashoffset: 0;
+    }
+}
+
+.tech__animateLine_4{
+    stroke-dasharray: 200;
+    stroke-dashoffset: 0;
+    animation: tech_wr1_lines 5s infinite linear;
+}
+
+@keyframes tech_wr1_lines {
+    0%{
+        stroke-dashoffset: -200;
+    }
+    20%{
+        stroke-dashoffset: -200;
+    }
+    40%{
+        stroke-dashoffset: 0;
+    }
+    100%{
+        stroke-dashoffset: 0;
+    }
+}
+
+.tech__animateLine_6{
+    stroke-dasharray: 200;
+    stroke-dashoffset: 0;
+    animation: tech_wr2_lines 5s infinite linear;
+}
+
+@keyframes tech_wr2_lines {
+    0%{
+        stroke-dashoffset: 200;
+    }
+    20%{
+        stroke-dashoffset: 200;
+    }
+    40%{
+        stroke-dashoffset: 0;
+    }
+    100%{
+        stroke-dashoffset: 0;
+    }
+}
+
+.tech__animateLine_2{
+    animation: tech_top_lines_2 5s infinite linear;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+}
+
+@keyframes tech_top_lines_2 {
+    0%{
+        stroke-dashoffset: 100;
+    }
+
+    40%{
+        stroke-dashoffset: 100;
+    }
+
+    50%{
+        stroke-dashoffset: 0;
+    }
+
+    100%{
+        stroke-dashoffset: 0;
+    }
+}
+
+.tech__animateLine_7, .tech__animateLine_8, .tech__animateLine_9{
+    animation: tech_top_lines_3 5s infinite linear;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+}
+
+@keyframes tech_top_lines_3 {
+    0%{
+        stroke-dashoffset: 100;
+    }
+
+    50%{
+        stroke-dashoffset: 100;
+    }
+
+    70%{
+        stroke-dashoffset: 0;
+    }
+
+    100%{
+        stroke-dashoffset: 0;
+    }
+}
+
+.tech__animateLight{
+    position: absolute;
+    background: linear-gradient(180deg, rgba(71, 139, 253, 0) 0%, #478BFD 100%);
+    z-index: 1;
+    animation: tech_light 5s infinite linear;
+}
+
+@keyframes tech_light {
+    0%{
+        opacity: 0;
+    }
+
+    70%{
+        opacity: 0;
+    }
+
+    100%{
+        opacity: 1;
+    }
 }

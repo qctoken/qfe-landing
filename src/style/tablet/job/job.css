@@ -1,6 +1,6 @@
 .job_animated{
-    animation: job_animation 1.5s linear;
-    animation-delay: 3s;
+    animation: job_animation 0.75s linear;
+    animation-delay: 1.5s;
 }
 
 @keyframes job_animation {
@@ -21,8 +21,8 @@
 }
 
 .job_animated .job__head{
-    animation: text-appear 1s linear forwards;
-    animation-delay: 3s;
+    animation: text-appear 0.5s linear forwards;
+    animation-delay: 1.5s;
 }
 
 .job__textBlue{
@@ -37,8 +37,8 @@
 }
 
 .job_animated .job__text{
-    animation: text-appear 1s linear forwards;
-    animation-delay: 3s;
+    animation: text-appear 0.5s linear forwards;
+    animation-delay: 1.5s;
 }
 
 
@@ -66,12 +66,12 @@
 }
 
 .job_animated .job__img_logo{
-    animation: img-logo-appear 1s linear forwards;
+    animation: img-logo-appear 0.5s linear forwards;
 }
 
 .job_animated .job__img_people{
-    animation: img-people-appear 1s linear forwards;
-    animation-delay: 0.5s;
+    animation: img-people-appear 0.5s linear forwards;
+    animation-delay: 0.25s;
 }
 
 @keyframes img-logo-appear {
@@ -100,7 +100,7 @@
 
 .job_animated .job__light{
     animation: blured_light 1.5s infinite;
-    animation-delay: 2s;
+    animation-delay: 1s;
     animation-direction: alternate;
 }
 
@@ -129,8 +129,8 @@
 }
 
 .job_animated .job__form{
-    animation: form-appear 1s linear forwards;
-    animation-delay: 3s;
+    animation: form-appear 0.5s linear forwards;
+    animation-delay: 1.5s;
     display: block;
     opacity: 0;
 }
