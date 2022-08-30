@@ -1,5 +1,4 @@
 import { useEffect, useState} from "react";
-
 import { Link } from "react-router-dom";
 
 import logo from "../images/logo.svg";
@@ -21,6 +20,7 @@ export function Header({ startLink = "", buyQCTLink = "" }: Props) {
   const handleClickMenuButton = () => {
     setIsMenuButtonClose((prev) => !prev);
   };
+
 
   useEffect(() => {
     const land_block = document.querySelector('.landing_root')?.parentElement?.parentElement;
@@ -71,6 +71,41 @@ export function Header({ startLink = "", buyQCTLink = "" }: Props) {
   return (
     <>
       <div className="header__background"></div>
+  return (
+    <>
+      <div className="header__background"></div>
+      <ul className={`menu menu_mob ${isMenuButtonClose ? "menu_showed" : ""}`}>
+        <a className="menu__link active" href="#">
+          <li className="menu__item">Главная</li>
+        </a>
+        <a className="menu__link" href="#step-block">
+          <li className="menu__item">Твой путь</li>
+        </a>
+        <a className="menu__link" href="#roadmap">
+          <li className="menu__item">Roadmap</li>
+        </a>
+        <a className="menu__link" href="#dblock">
+          <li className="menu__item">Метавселенная</li>
+        </a>
+        <a className="menu__link" href="#values">
+          <li className="menu__item">Идеология</li>
+        </a>
+        <a className="menu__link" href="#bali">
+          <li className="menu__item">Недвижимость</li>
+        </a>
+        <a className="menu__link" href="#command">
+          <li className="menu__item">Команда</li>
+        </a>
+        <a className="menu__link" href="#partner">
+          <li className="menu__item">Партнерство</li>
+        </a>
+        <a className="menu__link" href="#round">
+          <li className="menu__item">Достижения</li>
+        </a>
+        <a className="menu__link" href="#job">
+          <li className="menu__item">Начать с нами</li>
+        </a>
+      </ul>
       <header className="header">
         <div className="header__top-line">
           <a href="#"><img src={logo} className="header__logo" /></a>
@@ -111,7 +146,7 @@ export function Header({ startLink = "", buyQCTLink = "" }: Props) {
               </a>
             </li>
             <li className="menu__arrow" onClick={handleClickArrow}>
-              <a>
+              <a className="menu__link" href="#">
                 <img src={header_arrow_menu} />
               </a>
             </li>
