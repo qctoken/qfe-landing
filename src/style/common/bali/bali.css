@@ -57,18 +57,16 @@
 }
 
 .bali__arrow{
-    display: inline-block;
-    width: 6.22px;
-    height: 10.37px;
+    display: inline-flex;
+    width: 50px;
+    height: 32px;
     border: 1px solid #FFFFFF;
     border-radius: 7px;
     opacity: 0.6;
     margin-right: 11px;
-    padding-top: 11px;
-    padding-bottom: 10.63px;
-    padding-left: 22px;
-    padding-right: 21.78px;
     cursor: pointer;
+    justify-content: center;
+    align-items: center;
 }
 
 .bali__cardBlock{
@@ -85,14 +83,12 @@
     display: inline-block;
     margin-right: 20px;
     position: relative;
+    order: 0;
 }
 
 .bali__card_active{
     opacity: 1;
-}
-
-.bali__card_hidden{
-    display: none;
+    order: -1 !important;
 }
 
 .bali__cardName{

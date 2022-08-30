@@ -28,3 +28,61 @@
     height: 483px;
     line-height: 32px;
 }
+
+.tech__animateBlock{
+    width: 1200px;
+    height: 590px;
+}
+
+.tech__animateLine_1{
+    top: 225px;
+    left: 335px;
+}
+
+.tech__animateLine_5{
+    top: 225px;
+    right: 335px;
+}
+
+.tech__animateLine_3{
+    top: 225px;
+    left: 50%;
+}
+
+.tech__animateLine_4{
+    top: 317px;
+    left: 375px;
+}
+
+.tech__animateLine_6{
+    top: 317px;
+    right: 372px;
+}
+
+.tech__animateLine_2{
+    top: 350px;
+    left: 50%;
+}
+
+.tech__animateLine_7{
+    top: 530px;
+    left: 570px;
+}
+
+.tech__animateLine_8{
+    top: 530px;
+    left: 50%;
+}
+
+.tech__animateLine_9{
+    top: 530px;
+    right: 570px;
+}
+
+.tech__animateLight{
+    width: 250px;
+    height: 90px;
+    bottom: 50px;
+    left: 475px;
+    filter: blur(40px);
+}

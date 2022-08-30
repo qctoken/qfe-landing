@@ -2,15 +2,18 @@
     position: relative;
     width: 100%;
     height: 244px;
-    overflow-y: hidden;
+    overflow: hidden;
 }
 
 .scroll-line__bar{
     width: 2900px;
     height: 244px;
-    padding-left: 100%;
     margin-top: 20px;
-    animation: line-scroll 30s linear infinite alternate;
+    display: flex;
+}
+
+.scroll-line__bar.scroll-line__bar_animate{
+    animation: line-scroll 5s linear infinite;
 }
 
 .scroll-line__item{
@@ -19,9 +22,9 @@
 
 @keyframes line-scroll {
     0% {
-        transform: translate(0, 0);
+        margin-left: 0;
     }
     100% {
-        transform: translate(-100%, 0);
+        margin-left: -410px;
     }
 }

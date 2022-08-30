@@ -56,6 +56,11 @@
     right: 0;
 }
 
+.command__scrollBlock:hover.command__scrollBlock::-webkit-scrollbar{
+    width: 6px;
+    height: 6px;
+}
+
 .command__scroll{
     display: flex;
     flex-direction: column;

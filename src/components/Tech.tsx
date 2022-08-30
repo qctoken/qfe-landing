@@ -9,8 +9,38 @@ export function Tech() {
         <br />
         которые мы используем
       </h2>
-      <img src={tech_1} className="tech__img" />
-      <img src={tech_1_mob} className="tech__img tech__img_mob" />
+      <div className="tech__animateBlock">
+        <img src={tech_1} className="tech__img" />
+        <img src={tech_1_mob} className="tech__img tech__img_mob" />
+        <svg className="tech__animateLine tech__animateLine_1" width="37" height="60" viewBox="0 0 37 75" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M36 1L1.5 74"  stroke-width="2"/>
+        </svg>
+        <svg className="tech__animateLine tech__animateLine_2" width="2" height="43" viewBox="0 0 2 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 0V43"  stroke-width="2"/>
+        </svg>
+        <svg className="tech__animateLine tech__animateLine_3" width="2" height="60" viewBox="0 0 2 63" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 0V62.5"  stroke-width="2"/>
+        </svg>
+        <svg className="tech__animateLine tech__animateLine_4" width="152" height="2" viewBox="0 0 195 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M195 0.999997L0 1.00008"  stroke-width="2"/>
+        </svg>
+        <svg className="tech__animateLine tech__animateLine_5" width="35" height="60" viewBox="0 0 35 75" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1L34 74"  stroke-width="2"/>
+        </svg>
+        <svg className="tech__animateLine tech__animateLine_6" width="152" height="2" viewBox="0 0 195 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M195 0.999997L0 1.00008"  stroke-width="2"/>
+        </svg>
+        <svg className="tech__animateLine tech__animateLine_7" width="2" height="43" viewBox="0 0 2 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 0V43"  stroke-width="2"/>
+        </svg>
+        <svg className="tech__animateLine tech__animateLine_8" width="2" height="60" viewBox="0 0 2 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 0V71"  stroke-width="2"/>
+        </svg>
+        <svg className="tech__animateLine tech__animateLine_9" width="2" height="43" viewBox="0 0 2 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 0V43" stroke-width="2"/>
+        </svg>
+        <div className="tech__animateLight"></div>
+      </div>
       <div className="tech__block">
         <div className="tech__tab">QCT.info</div>
         <div className="tech__console">

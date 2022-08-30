@@ -10,7 +10,7 @@ type Props = {
 };
 
 export function Header({ startLink = "", buyQCTLink = "" }: Props) {
-  const [isHide, setIsHide] = useState(false);
+  const [isHide, setIsHide] = useState(true);
   const [isMenuButtonClose, setIsMenuButtonClose] = useState(false);
 
   const handleClickArrow = () => {
@@ -22,29 +22,31 @@ export function Header({ startLink = "", buyQCTLink = "" }: Props) {
   };
 
   useEffect(() => {
-    let prev_scroll_pos = window.pageYOffset;
+const land_block = document.querySelector(".landing_root")?.parentElement?.parentElement;
     const menu_top = document.querySelector(".header__top-line");
     const menu__hide = document.querySelector(".menu__hide");
+
+    let prev_scroll_pos = land_block!.scrollTop;
     const onScroll = () => {
-      const current_scroll_pos = window.pageYOffset;
-      if (prev_scroll_pos > current_scroll_pos) {
-        menu_top!.classList.add("header__top-line_visible");
-        menu_top!.classList.remove("header__top-line_hidden");
-      } else {
-        menu_top!.classList.remove("header__top-line_visible");
-        menu_top!.classList.add("header__top-line_hidden");
-        menu__hide!.classList.remove("menu__hide_visible");
-      }
-      prev_scroll_pos = current_scroll_pos;
+      const current_scroll_pos = land_block!.scrollTop;
+        if (prev_scroll_pos > current_scroll_pos) {
+            menu_top!.classList.add("header__top-line_visible");
+            menu_top!.classList.remove("header__top-line_hidden");
+        } else {
+            menu_top!.classList.remove("header__top-line_visible");
+            menu_top!.classList.add("header__top-line_hidden");
+            menu__hide!.classList.remove("menu__hide_visible");
+        }
+        prev_scroll_pos = current_scroll_pos;
     };
 
     const land_html = document.querySelector("html");
     land_html!.style.scrollBehavior = "smooth";
 
-    window.addEventListener("scroll", onScroll);
+    document.addEventListener("scroll", onScroll);
 
     return () => {
-      window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("scroll", onScroll);
     };
   });
 
@@ -201,7 +203,7 @@ export function Header({ startLink = "", buyQCTLink = "" }: Props) {
           работы в любых валютах из любой точки Земли
         </span>
         <div className="header__butBlock">
-          <Link to={startLink} className="menu__topButton">
+          <Link to={startLink} className="header__button">
             Начать пользоваться
           </Link>
           <span className="header__button_text">Стать инвестором</span>

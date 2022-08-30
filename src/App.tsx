@@ -1,9 +1,6 @@
 import "./style/reset.css";
 import "./style/fonts.css";
 import "./style/assembly.css";
-// import "./script/script_command.js";
-// import "./script/script_jobPopUp.js";
-// import "./script/script_partnerPopUp.js";
 
 import { useRef } from "react";
 import { Bali } from "./components/Bali";
