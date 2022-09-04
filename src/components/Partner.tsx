@@ -11,11 +11,22 @@ import {
   refresh_color,
 } from "../utils/partner";
 
+import {
+  mask,
+} from "../utils/tel";
+
 export function Partner() {
   const VWBlockRef = useRef<HTMLDivElement>(null);
   const [isVWAnimated, setIsVWAnimated] = useState(false);
 
   const [isPopUpVisible, setIsPopUpVisible] = useState(false);
+
+  useEffect(() => {
+    let input = document.querySelector(".partner__input_tel");
+    input!.addEventListener("input", mask, false);
+    input!.addEventListener("focus", mask, false);
+    input!.addEventListener("blur", mask, false);
+  });
 
   function handleClickPopUp(event: any) {
     let pocket_num;
@@ -304,7 +315,7 @@ export function Partner() {
                     required
                   />
                   <input
-                    className=" partner__input"
+                    className=" partner__input partner__input_tel"
                     type="tel"
                     placeholder="Телефон"
                     required

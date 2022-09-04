@@ -11,7 +11,12 @@ import jobAvatar_6 from "../images/jobAvatar_6.png";
 
 import { useRef, useEffect, useState } from "react";
 
+import {
+  mask,
+} from "../utils/tel";
+
 export function Job() {
+
   const JobBlockRef = useRef<HTMLDivElement>(null);
   const [isJobAnimated, setIsJobAnimated] = useState(false);
   const [isPopUpVisible, setIsPopUpVisible] = useState(false);
@@ -19,6 +24,23 @@ export function Job() {
   const handleClickPopUp = () => {
     setIsPopUpVisible((prev) => !prev);
   };
+
+  const handleFiles = (e:any) => {
+    let file = e.target.files[0];
+
+    let file_input = document.querySelector(".job__file");
+    let file_input_name = document.querySelector(".job__fileName");
+
+    file_input!.classList.add("job__file_active");
+    file_input_name!.innerHTML = file.name;
+  };
+
+  useEffect(() => {
+    let input = document.querySelector(".job__input_tel");
+    input!.addEventListener("input", mask, false);
+    input!.addEventListener("focus", mask, false);
+    input!.addEventListener("blur", mask, false);
+  });
 
   useEffect(() => {
     let is_showed = false;
@@ -78,17 +100,18 @@ export function Job() {
           <div className="job__form">
             <img src={form_logo} className="job__formLogo" />
             <form>
-              <input type="text" placeholder="Имя" className="job__input" />
-              <input type="text" placeholder="Фамилия" className="job__input" />
-              <input type="tel" placeholder="Телефон" className="job__input" />
-              <input type="email" placeholder="Email" className="job__input" />
+              <input type="text" placeholder="Имя" className="job__input" required/>
+              <input type="text" placeholder="Фамилия" className="job__input" required/>
+              <input type="tel" placeholder="Телефон" className="job__input job__input_tel" required/>
+              <input type="email" placeholder="Email" className="job__input" required/>
               <label htmlFor="fileInput" className="job__file">
-                Прикрепить резюме
+                <span className="job__fileName">Прикрепить резюме</span>
                 <input
                   id="fileInput"
                   type="file"
                   accept=".doc,.docx,.pdf"
                   maxLength={16777216}
+                  onChange={handleFiles}
                 />
               </label>
               <span className="job__formDeskr">DOC, DOCX, PDF (2 MB)</span>
