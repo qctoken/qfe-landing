@@ -11,22 +11,24 @@ import {
   refresh_color,
 } from "../utils/partner";
 
-import {
-  mask,
-} from "../utils/tel";
-
 export function Partner() {
   const VWBlockRef = useRef<HTMLDivElement>(null);
   const [isVWAnimated, setIsVWAnimated] = useState(false);
 
   const [isPopUpVisible, setIsPopUpVisible] = useState(false);
 
-  useEffect(() => {
-    let input = document.querySelector(".partner__input_tel");
-    input!.addEventListener("input", mask, false);
-    input!.addEventListener("focus", mask, false);
-    input!.addEventListener("blur", mask, false);
-  });
+  const [telephoneError, setTelephoneErorr] = useState(true);
+
+  const phoneHandler = (e: any) => {
+    const regPhone = /^[\+]?[(]?[0-9]{4}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+    if (!regPhone.test((e.target.value).toLowerCase()))
+    {
+      setTelephoneErorr(true);
+    }
+    else{
+      setTelephoneErorr(false);
+    }
+  }
 
   function handleClickPopUp(event: any) {
     let pocket_num;
@@ -80,6 +82,8 @@ export function Partner() {
     const form_appear = function (event: any) {
       const partner__formBlock = document.querySelector(".partner__formBlock");
       partner__formBlock!.classList.add("active");
+
+      setTelephoneErorr(false);
 
       setTimeout(function () {
         partner__button!.setAttribute("type", "submit");
@@ -307,6 +311,7 @@ export function Partner() {
                 </div>
               </div>
               <div className="partner__formBlock">
+              {telephoneError && <span className="partner__formError">Введите корректный номер телефона</span>}
                 <form id="partner__form" className=" partner__form">
                   <input
                     className=" partner__input"
@@ -318,6 +323,7 @@ export function Partner() {
                     className=" partner__input partner__input_tel"
                     type="tel"
                     placeholder="Телефон"
+                    onBlur={e => phoneHandler(e)}
                     required
                   />
                 </form>
@@ -326,6 +332,7 @@ export function Partner() {
                 type="button"
                 form="partner__form"
                 className="partner__button"
+                disabled={!telephoneError}
               >
                 ПРИСОЕДИНИТЬСЯ
               </button>
