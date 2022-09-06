@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useEffect, useState} from "react";
-
 
 import logo from "../images/logo.svg";
 import header_arrow_menu from "../images/header_arrow_menu.svg";
-
 
 type Props = {
   startLink?: string;
@@ -34,16 +31,16 @@ export function Header({ startLink = "", buyQCTLink = "" }: Props) {
     let prev_scroll_pos = land_html!.scrollTop;
     const onScroll = () => {
       const current_scroll_pos = land_html!.scrollTop;
-        if (prev_scroll_pos > current_scroll_pos) {
-            menu_top!.classList.add("header__top-line_visible");
-            menu_top!.classList.remove("header__top-line_hidden");
-            menu__hide!.classList.remove("menu__hide_visible");
-        } else {
-            menu_top!.classList.remove("header__top-line_visible");
-            menu_top!.classList.add("header__top-line_hidden");
-            menu__hide!.classList.remove("menu__hide_visible");
-        }
-        prev_scroll_pos = current_scroll_pos;
+      if (prev_scroll_pos > current_scroll_pos) {
+        menu_top!.classList.add("header__top-line_visible");
+        menu_top!.classList.remove("header__top-line_hidden");
+        menu__hide!.classList.remove("menu__hide_visible");
+      } else {
+        menu_top!.classList.remove("header__top-line_visible");
+        menu_top!.classList.add("header__top-line_hidden");
+        menu__hide!.classList.remove("menu__hide_visible");
+      }
+      prev_scroll_pos = current_scroll_pos;
     };
 
     document.addEventListener("scroll", onScroll);
@@ -160,7 +157,10 @@ export function Header({ startLink = "", buyQCTLink = "" }: Props) {
         </div>
         <h1 className="header__h1">
           <i className="header__h1_blue">Создай</i> свой образовательный продукт
-          в <i className="header__h1_blue">метавселенной с технологией Learn to Earn</i>
+          в{" "}
+          <i className="header__h1_blue">
+            метавселенной с технологией Learn to Earn
+          </i>
         </h1>
         <h1 className="header__h1 header__h1__mob">
           <i className="header__h1_blue">Создай</i>
@@ -177,7 +177,9 @@ export function Header({ startLink = "", buyQCTLink = "" }: Props) {
           <Link to={startLink} className="header__button">
             Начать пользоваться
           </Link>
-          <a href="#" className="header__button_text">Стать инвестором</a>
+          <a href="#" className="header__button_text">
+            Стать инвестором
+          </a>
         </div>
       </header>
     </>
