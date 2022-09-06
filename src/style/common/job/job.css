@@ -75,6 +75,15 @@
     cursor: pointer;
 }
 
+.job__file_active::before{
+    content: "✔";
+    margin-right: 5px;
+}
+
+.job__file_active{
+    border: 1px solid #86aed2;
+}
+
 .job__file input{
     display: none;
 }
@@ -128,4 +137,12 @@
     color: #FFFFFF;
     display: block;
     margin-top: 12px;
+}
+
+.job__formError{
+    font-family: 'Rubik';
+    font-weight: 400;
+    font-size: 16px;
+    color: #b92f2f;
+    display: block;
 }

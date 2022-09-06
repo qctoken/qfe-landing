@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useEffect, useState} from "react";
+
 
 import logo from "../images/logo.svg";
 import header_arrow_menu from "../images/header_arrow_menu.svg";
+
 
 type Props = {
   startLink?: string;
@@ -22,16 +25,19 @@ export function Header({ startLink = "", buyQCTLink = "" }: Props) {
   };
 
   useEffect(() => {
-const land_block = document.querySelector(".landing_root")?.parentElement?.parentElement;
+    const land_html = document.querySelector(".landing_root")!.closest("html");
     const menu_top = document.querySelector(".header__top-line");
     const menu__hide = document.querySelector(".menu__hide");
 
-    let prev_scroll_pos = land_block!.scrollTop;
+    land_html!.style.scrollBehavior = "smooth";
+
+    let prev_scroll_pos = land_html!.scrollTop;
     const onScroll = () => {
-      const current_scroll_pos = land_block!.scrollTop;
+      const current_scroll_pos = land_html!.scrollTop;
         if (prev_scroll_pos > current_scroll_pos) {
             menu_top!.classList.add("header__top-line_visible");
             menu_top!.classList.remove("header__top-line_hidden");
+            menu__hide!.classList.remove("menu__hide_visible");
         } else {
             menu_top!.classList.remove("header__top-line_visible");
             menu_top!.classList.add("header__top-line_hidden");
@@ -39,9 +45,6 @@ const land_block = document.querySelector(".landing_root")?.parentElement?.paren
         }
         prev_scroll_pos = current_scroll_pos;
     };
-
-    const land_html = document.querySelector("html");
-    land_html!.style.scrollBehavior = "smooth";
 
     document.addEventListener("scroll", onScroll);
 
@@ -77,46 +80,14 @@ const land_block = document.querySelector(".landing_root")?.parentElement?.paren
   return (
     <>
       <div className="header__background"></div>
-      <ul className={`menu menu_mob ${isMenuButtonClose ? "menu_showed" : ""}`}>
-        <a className="menu__link active" href="#">
-          <li className="menu__item">Главная</li>
-        </a>
-        <a className="menu__link" href="#step-block">
-          <li className="menu__item">Твой путь</li>
-        </a>
-        <a className="menu__link" href="#roadmap">
-          <li className="menu__item">Roadmap</li>
-        </a>
-        <a className="menu__link" href="#dblock">
-          <li className="menu__item">Метавселенная</li>
-        </a>
-        <a className="menu__link" href="#values">
-          <li className="menu__item">Идеология</li>
-        </a>
-        <a className="menu__link" href="#bali">
-          <li className="menu__item">Недвижимость</li>
-        </a>
-        <a className="menu__link" href="#command">
-          <li className="menu__item">Команда</li>
-        </a>
-        <a className="menu__link" href="#partner">
-          <li className="menu__item">Партнерство</li>
-        </a>
-        <a className="menu__link" href="#round">
-          <li className="menu__item">Достижения</li>
-        </a>
-        <a className="menu__link" href="#job">
-          <li className="menu__item">Начать с нами</li>
-        </a>
-      </ul>
-      <header className="header">
+      <header className="header" id="header">
         <div className="header__top-line">
-          <a href="#">
+          <a href="#header">
             <img src={logo} className="header__logo" />
           </a>
           <ul className={`menu ${isMenuButtonClose ? "menu_showed" : ""}`}>
             <li className="menu__item menu__item_main active">
-              <a className="menu__link" href="#">
+              <a className="menu__link" href="#header">
                 Главная
               </a>
             </li>
@@ -151,7 +122,7 @@ const land_block = document.querySelector(".landing_root")?.parentElement?.paren
               </a>
             </li>
             <li className="menu__arrow" onClick={handleClickArrow}>
-              <a className="menu__link" href="#">
+              <a>
                 <img src={header_arrow_menu} />
               </a>
             </li>
@@ -189,12 +160,12 @@ const land_block = document.querySelector(".landing_root")?.parentElement?.paren
         </div>
         <h1 className="header__h1">
           <i className="header__h1_blue">Создай</i> свой образовательный продукт
-          в <i className="h1_blue">метавселенной с технологией Learn to Earn</i>
+          в <i className="header__h1_blue">метавселенной с технологией Learn to Earn</i>
         </h1>
         <h1 className="header__h1 header__h1__mob">
           <i className="header__h1_blue">Создай</i>
           <br />
-          свой продукт в <i className="h1_blue">метавселенной</i>
+          свой продукт в <i className="header__h1_blue">метавселенной</i>
         </h1>
         <span className="header__text">
           Интуитивно понятное комплексное инновационное решение для образования
@@ -206,7 +177,7 @@ const land_block = document.querySelector(".landing_root")?.parentElement?.paren
           <Link to={startLink} className="header__button">
             Начать пользоваться
           </Link>
-          <span className="header__button_text">Стать инвестором</span>
+          <a href="#" className="header__button_text">Стать инвестором</a>
         </div>
       </header>
     </>

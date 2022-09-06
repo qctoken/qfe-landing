@@ -154,8 +154,8 @@
 .partner__formBlock{
     width: calc(100% + 280px);
     margin-left: -140px;
-    height: 84px;
     display: none;
+    padding-bottom: 15px;
 }
 
 .partner__formBlock.active{

@@ -12,12 +12,57 @@ import jobAvatar_6 from "../images/jobAvatar_6.png";
 import { useRef, useEffect, useState } from "react";
 
 export function Job() {
+
   const JobBlockRef = useRef<HTMLDivElement>(null);
   const [isJobAnimated, setIsJobAnimated] = useState(false);
   const [isPopUpVisible, setIsPopUpVisible] = useState(false);
 
+  const [telephoneError, setTelephoneErorr] = useState(false);
+  const [mailError, setMailErorr] = useState(false);
+  const [formError, setFormValid] = useState(false);
+
+  const emailHandler = (e: any) => {
+    const regMail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    if (!regMail.test((e.target.value).toLowerCase()))
+    {
+      setMailErorr(true);
+    }
+    else{
+      setMailErorr(false);
+    }
+  }
+
+  const phoneHandler = (e: any) => {
+    const regPhone = /^[\+]?[(]?[0-9]{4}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+    if (!regPhone.test((e.target.value).toLowerCase()))
+    {
+      setTelephoneErorr(true);
+    }
+    else{
+      setTelephoneErorr(false);
+    }
+  }
+
+  useEffect(() => {
+    if(telephoneError || mailError){
+      setFormValid(false);
+    } else {
+      setFormValid(true);
+    }
+  }, [telephoneError, mailError]);
+
   const handleClickPopUp = () => {
     setIsPopUpVisible((prev) => !prev);
+  };
+
+  const handleFiles = (e:any) => {
+    let file = e.target.files[0];
+
+    let file_input = document.querySelector(".job__file");
+    let file_input_name = document.querySelector(".job__fileName");
+
+    file_input!.classList.add("job__file_active");
+    file_input_name!.innerHTML = file.name;
   };
 
   useEffect(() => {
@@ -78,22 +123,37 @@ export function Job() {
           <div className="job__form">
             <img src={form_logo} className="job__formLogo" />
             <form>
-              <input type="text" placeholder="Имя" className="job__input" />
-              <input type="text" placeholder="Фамилия" className="job__input" />
-              <input type="tel" placeholder="Телефон" className="job__input" />
-              <input type="email" placeholder="Email" className="job__input" />
+              {telephoneError && <span className="job__formError">Введите корректный номер телефона</span>}
+              {mailError && <span className="job__formError">Введите корректный email</span>}
+              <input type="text" placeholder="Имя" className="job__input" required/>
+              <input type="text" placeholder="Фамилия" className="job__input" required/>
+              <input 
+                type="tel"
+                placeholder="Телефон"
+                className="job__input job__input_tel"
+                onBlur={e => phoneHandler(e)}
+                required
+              />
+              <input 
+                type="email" 
+                placeholder="Email" 
+                className="job__input"
+                onBlur={e => emailHandler(e)}
+                required
+              />
               <label htmlFor="fileInput" className="job__file">
-                Прикрепить резюме
+                <span className="job__fileName">Прикрепить резюме</span>
                 <input
                   id="fileInput"
                   type="file"
                   accept=".doc,.docx,.pdf"
                   maxLength={16777216}
+                  onChange={handleFiles}
                 />
               </label>
               <span className="job__formDeskr">DOC, DOCX, PDF (2 MB)</span>
-              <button type="submit" className="job__button">
-                <img src={form_button} className="job__fromButtonImg" />
+              <button disabled={!formError} type="submit" className="job__button">
+                <img src={form_button} className="job__fromButtonImg"/>
                 Отправить заявку
               </button>
             </form>

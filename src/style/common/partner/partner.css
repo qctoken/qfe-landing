@@ -301,6 +301,16 @@
     color:#98A7B4;
 }
 
+.partner__formError{
+    font-family: 'Rubik';
+    font-weight: 400;
+    font-size: 16px;
+    color: #b92f2f;
+    display: block;
+    text-align: center;
+    padding-top: 10px;
+}
+
 .partner__pocketBlockContent_white .partner__input{
     background: #FFFFFF;
     border-color: #DEE6F3;

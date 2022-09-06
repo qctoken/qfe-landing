@@ -11,7 +11,6 @@ export function Tech() {
       </h2>
       <div className="tech__animateBlock">
         <img src={tech_1} className="tech__img" />
-        <img src={tech_1_mob} className="tech__img tech__img_mob" />
         <svg className="tech__animateLine tech__animateLine_1" width="37" height="60" viewBox="0 0 37 75" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M36 1L1.5 74"  stroke-width="2"/>
         </svg>

@@ -10,3 +10,13 @@
 .roadmap__scroll{
     margin-top: 40px;
 }
+
+.roadmap__scroll::-webkit-scrollbar{
+    width: 5px;
+    height: 5px;
+    background-color: #00000000;
+}
+
+.roadmap__scroll::-webkit-scrollbar-thumb{
+    background-color: #0000002a;
+}

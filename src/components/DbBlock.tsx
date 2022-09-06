@@ -4,12 +4,18 @@ import two_dblock from "../images/2dblock.png";
 
 export function DbBlock() {
   const dbBlockRef = useRef<HTMLDivElement>(null);
-  const [isLightOn, setIsLightOr] = useState(false);
+  const [isLightOn, setIsLightOn] = useState(false);
 
   useEffect(() => {
+    let isShowed = false;
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        setIsLightOr(entry.isIntersecting);
+        if (entry.isIntersecting && !isShowed) {
+          setIsLightOn(true);
+
+          isShowed = true;
+          observer.disconnect();
+        }
       });
     });
 
