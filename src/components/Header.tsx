@@ -43,10 +43,10 @@ export function Header({ startLink = "", buyQCTLink = "" }: Props) {
       prev_scroll_pos = current_scroll_pos;
     };
 
-    document.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll);
 
     return () => {
-      document.removeEventListener("scroll", onScroll);
+      window.removeEventListener("scroll", onScroll);
     };
   });
 
