@@ -1,12 +1,7 @@
 import { useRef, useEffect, useState, type MutableRefObject } from "react";
 
-type Props = {
-  secondPartRef: MutableRefObject<HTMLDivElement | null>;
-};
-
-export function Values({ secondPartRef }: Props) {
+export function Values() {
   const valuesRef = useRef(null);
-  const [isEnter, setIsEnter] = useState(false);
 
   useEffect(() => {
     let is_showed = false;
@@ -14,25 +9,20 @@ export function Values({ secondPartRef }: Props) {
       entries.forEach((entry) => {
         const vrblock = document.querySelector(".vrblock");
         const vrblock__img = document.querySelector(".vrblock__img");
-        const blocks_second_part = document.querySelector(
-          ".second-part-blocks"
-        );
+        const second_part = document.querySelector(".second-part-blocks")
+        const block_bali = document.querySelector("#bali");
 
         if (entry.isIntersecting && !is_showed) {
-          blocks_second_part!.classList.add("second-part-blocks_hidden");
+          second_part!.classList.add("second-part-blocks__hidden");
           vrblock__img!.classList.add("vrblock__img_animated");
           vrblock!.classList.add("vrblock_wide");
 
           setTimeout(function () {
             vrblock!.classList.remove("vrblock_wide");
-            vrblock__img!.classList.remove("vrblock__img_animated");
-            blocks_second_part!.classList.remove("second-part-blocks_hidden");
+            second_part!.classList.remove("second-part-blocks__hidden");
 
-            blocks_second_part!.scrollIntoView();
-            blocks_second_part!.classList.add(
-              "second-part-blocks_hidden_appear"
-            );
-          }, 950);
+            block_bali!.scrollIntoView();
+          }, 1000);
 
           is_showed = true;
           observer.disconnect();

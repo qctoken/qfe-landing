@@ -20,9 +20,11 @@ export function Partner() {
   const [telephoneError, setTelephoneErorr] = useState(true);
 
   const phoneHandler = (e: any) => {
+    let input_phone = document.querySelector<HTMLInputElement>('.partner__input_tel');
     const regPhone = /^[\+]?[(]?[0-9]{4}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
-    if (!regPhone.test((e.target.value).toLowerCase()))
+    if (!regPhone.test((input_phone!.value).toLowerCase()))
     {
+      e.preventDefault();
       setTelephoneErorr(true);
     }
     else{
@@ -44,7 +46,9 @@ export function Partner() {
       refresh_num(pocket_num);
       refresh_color(pocket_num);
       setIsPopUpVisible((prev) => !prev);
-    } else if (event.target?.classList.contains("partner__popUp")) {
+    } else if (event.target?.classList.contains("partner__popUp") 
+      || event.target?.parentElement.classList.contains("partner__popUpCross")
+      || event.target?.parentElement.parentElement.classList.contains("partner__popUpCross")) {
       document
         .querySelector(".partner__pocketAbout.active")!
         .classList.remove("active");
@@ -127,6 +131,11 @@ export function Partner() {
       >
         <div className="partner__popUp" pocket-count="3">
           <div className="partner__pocketBlock">
+            <div className="partner__popUpCross">
+              <svg width="25" height="25" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M14.1421 2.6291C14.6628 2.1084 14.6628 1.26418 14.1421 0.743483C13.6214 0.222784 12.7772 0.222784 12.2565 0.743483L7.5 5.5L2.94281 0.942808C2.42211 0.422109 1.57789 0.42211 1.05719 0.942809C0.536492 1.46351 0.536492 2.30773 1.05719 2.82843L5.61438 7.38562L0.942809 12.0572C0.42211 12.5779 0.42211 13.4221 0.942809 13.9428C1.46351 14.4635 2.30773 14.4635 2.82843 13.9428L7.5 9.27124L12.3709 14.1421C12.8916 14.6628 13.7358 14.6628 14.2565 14.1421C14.7772 13.6214 14.7772 12.7772 14.2565 12.2565L9.38562 7.38562L14.1421 2.6291Z" fill="#fff"/>
+              </svg>
+            </div>
             <div className="partner__pocketBlockContent">
               <span className="partner__pocketBlockText">Пакет</span>
               <div className="partner__nav">
@@ -312,7 +321,7 @@ export function Partner() {
               </div>
               <div className="partner__formBlock">
               {telephoneError && <span className="partner__formError">Введите корректный номер телефона</span>}
-                <form id="partner__form" className=" partner__form">
+                <form onSubmit={e => phoneHandler(e)} id="partner__form" className=" partner__form">
                   <input
                     className=" partner__input"
                     type="text"
@@ -320,10 +329,9 @@ export function Partner() {
                     required
                   />
                   <input
-                    className=" partner__input partner__input_tel"
+                    className="partner__input partner__input_tel"
                     type="tel"
                     placeholder="Телефон"
-                    onBlur={e => phoneHandler(e)}
                     required
                   />
                 </form>
@@ -332,7 +340,7 @@ export function Partner() {
                 type="button"
                 form="partner__form"
                 className="partner__button"
-                disabled={!telephoneError}
+
               >
                 ПРИСОЕДИНИТЬСЯ
               </button>
