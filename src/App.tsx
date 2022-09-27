@@ -24,8 +24,6 @@ type Props = {
 };
 
 function App({ startLink, buyQCTLink }: Props) {
-  const secondPartRef = useRef<HTMLDivElement>(null);
-
   return (
     <div className="landing_root">
       <Header startLink={startLink} buyQCTLink={buyQCTLink} />
@@ -35,8 +33,8 @@ function App({ startLink, buyQCTLink }: Props) {
       <DbBlock />
       <div className="back_black">
         <VrBlock />
-        <div className="second-part-blocks" ref={secondPartRef}>
-          <Values secondPartRef={secondPartRef} />
+        <div className="second-part-blocks">
+          <Values />
           <Bali />
           <VirtualWorld />
           <Command />
