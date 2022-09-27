@@ -12,8 +12,8 @@
 }
 
 .roadmap__scroll::-webkit-scrollbar{
-    width: 5px;
-    height: 5px;
+    width: 8px;
+    height: 8px;
     background-color: #00000000;
 }
 

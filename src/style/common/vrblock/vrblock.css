@@ -81,3 +81,7 @@
     opacity: 0.6;
     margin-bottom: 40px;
 }
+
+.second-part-blocks__hidden{
+    display: none;
+}

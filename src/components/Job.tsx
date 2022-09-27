@@ -20,6 +20,7 @@ export function Job() {
   const [telephoneError, setTelephoneErorr] = useState(false);
   const [mailError, setMailErorr] = useState(false);
   const [formError, setFormValid] = useState(false);
+  const [fileError, setFileError] = useState(false);
 
   const emailHandler = (e: any) => {
     const regMail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
@@ -44,7 +45,7 @@ export function Job() {
   }
 
   useEffect(() => {
-    if(telephoneError || mailError){
+    if(telephoneError || mailError || fileError){
       setFormValid(false);
     } else {
       setFormValid(true);
@@ -56,13 +57,23 @@ export function Job() {
   };
 
   const handleFiles = (e:any) => {
+
     let file = e.target.files[0];
+    var fileExtension = ['doc', 'docx', 'pdf']; 
 
-    let file_input = document.querySelector(".job__file");
-    let file_input_name = document.querySelector(".job__fileName");
+    if (!fileExtension.includes(file.name.split('.').pop().toLowerCase()))
+    {
+      setFileError(true);
+    }
+    else{
+      setFileError(false);
 
-    file_input!.classList.add("job__file_active");
-    file_input_name!.innerHTML = file.name;
+      let file_input = document.querySelector(".job__file");
+      let file_input_name = document.querySelector(".job__fileName");
+
+      file_input!.classList.add("job__file_active");
+      file_input_name!.innerHTML = file.name;
+    }
   };
 
   useEffect(() => {
@@ -125,6 +136,7 @@ export function Job() {
             <form>
               {telephoneError && <span className="job__formError">Введите корректный номер телефона</span>}
               {mailError && <span className="job__formError">Введите корректный email</span>}
+              {fileError && <span className="job__formError">Некорректный формат файла</span>}
               <input type="text" placeholder="Имя" className="job__input" required/>
               <input type="text" placeholder="Фамилия" className="job__input" required/>
               <input 

@@ -37,7 +37,7 @@
     font-family: 'Rubik';
     font-weight: 400;
     font-size: 16px;
-    color: #dadada;
+    color: #cacaca;
 }
 
 .partner__pocketName{
@@ -65,7 +65,7 @@
     font-family: 'Rubik';
     font-weight: 400;
     font-size: 16px;
-    color: rgba(186, 196, 205, 0.5);
+    color: rgb(154, 160, 165);
     opacity: 0.8;
     display: block;
     margin-top: 16px;
@@ -448,4 +448,10 @@
     font-weight: 400;
     font-size: 16px;
     color: #98A7B4;
+}
+
+.partner__popUpCross{
+    position: absolute;
+    top: -50px;
+    right: 0;
 }
